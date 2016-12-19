@@ -1,24 +1,18 @@
-Throughout this course you will be building web sites from scratch and managing your files in a version control system, so you need to install a few tools on your computer and create accounts on a few services. All of these tools are free and available on all major platforms (Windows, OS X, and Linux).
+Before you get started with this course, you need to install a few tools and create a few accounts. All of these things are free and available on all major platforms (Windows, OS X, and Linux).
 
-## GitHub Account
+## Required Tools and Accounts
 
-First, [sign up for a free GitHub account](https://github.com/join) if you don't already have one. GitHub is a web service that allows you to get starter code from us, backup your code so that it doesn't get lost, share it with us when you have questions, and submit your final code to us when you're done with a challenge. It's kind of like Dropbox or Google Drive, only much more powerful. You will learn all about GitHub during the week on Managing Your Files.
+To get setup, please do the following:
 
-## GitHub Desktop or Git Command-Line Tools
+- **Install [Slack](https://slack.com/downloads).** Although you can use their [web interface](https://infxwebwin17.slack.com/messages/general/), their native desktop and mobile applications are nicer, and remain running so they can immediately notify you when someone sends you a direct message, or posts an answer to your question. We will invite you to the Slack team at the start of the quarter.
+- **Sign up for [GitHub](https://github.com/join).** GitHub is a web service that helps you manage and share your files. It's kind of like Dropbox or Google Drive, only much more powerful, and specifically optimized for code files. You will learn all about GitHub during our week on [Managing Your Files](../managing-files/).
+- **Install [GitHub Desktop](https://desktop.github.com/).** This tool will help you manage your files on your local machine, and synchronize them with GitHub. If you are comfortable working at the command line, you might also want to install the [git command line tools](https://git-scm.com/downloads), but those are optional.
+- **Install [Visual Studio Code](https://code.visualstudio.com/).** This is a fabulous free code editor from Microsoft that is highly-optimized for web development. Other popular editors such as [Atom](https://atom.io/) or [Sublime Text](http://www.sublimetext.com/) will also work, but all of my tutorials and video demonstrations will be done using Visual Studio Code.
+- **Install [Google Chrome](https://www.google.com/chrome/).** Although any browser will be able to display the web sites we build, you will want to use one with built-in developer tools so that you can more easily diagnose and fix problems with your code. Chrome has an excellent set of developer tools, and I will demonstrate how to use them. [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/) has a very similar set of developer tools but the user interface is slightly different.
 
-After you create your GitHub account, install the [GitHub Desktop](https://desktop.github.com/) application. This tool will help you manage your development files on your local machine, and synchronize them with GitHub.
+## Optional Tools and Accounts
 
-The GitHub Desktop application provides a simple, friendly, and easy-to-use graphical user interface over the more complex but far more powerful git command-line tools. If you are comfortable using the command line on your computer, you may want to install the [git command line tools](https://git-scm.com/downloads) in addition to the GitHub Desktop tool. You may use either (or both) for this course.
+These tools are optional, but might be of interest to those who are comfortable using the command line:
 
-## A Web-Optimized Code Editor
-
-The files for a web site or application are written in plain text, so you can use any text editor to write them, but there are some editors that are optimized for web development, and they make your life *much* easier.
-
-The editor I would highly recommend for this course is [Visual Studio Code](https://code.visualstudio.com/). This is a free, cross-platform, and feature-rich code editor from Microsoft (yes, a free tool from Microsoft!). It has a ton of useful features built-in, and a growing [library of extensions](https://marketplace.visualstudio.com/VSCode). It also has fantastic support for JavaScript.
-
-The other popular editor for web development is [Sublime Text](http://www.sublimetext.com/). You can download it for free, but it requires a $70 license to use it long-term. Sublime is a bit snappier than VS Code, but it doesn't come with as many features built-in. Instead, you need to install the [package control](https://packagecontrol.io/installation) extension, and then use it to install other extensions you might want. If you choose to use Sublime, I would highly recommend installing package control, and then use it to install the [emmet extension](https://github.com/sergeche/emmet-sublime#readme) for Sublime. This will give you the same powerful code completions that you get by default with VS Code.
-
-## A Browser with Developer Tools
-
-Although any browser will display the web sites we create during this course, you'll want to use a web browser that has a built-in set of developer tools so that you can better diagnose problems with your code. I would highly recommend using either [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/).
-
+- **[Node.js and NPM](https://nodejs.org/en/download/).** If you want to use the more advanced command-line tools, you will need the node.js runtime and the `npm` package manager.
+- **[BrowserSync](https://www.browsersync.io/).** This handy tool can watch your source files and automatically reload your page in the browser anytime those source files change. It requires Node.js and `npm`, so make sure you install that first. Then install this tool via the command line by running `sudo npm install -g browser-sync`.
