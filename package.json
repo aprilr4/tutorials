@@ -1,0 +1,36 @@
+{
+  "name": "tutorials",
+  "version": "1.0.0",
+  "description": "Tutorials for INFX 598 Beginning Web Dev course",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infx-web-win17/tutorials.git"
+  },
+  "author": "Dave Stearns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infx-web-win17/tutorials/issues"
+  },
+  "homepage": "https://github.com/infx-web-win17/tutorials#readme",
+  "dependencies": {
+    "browser-sync": "^2.14.0",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "^0.4.5",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "handlebars": "^4.0.5",
+    "showdown": "^1.4.2",
+    "through2": "^2.0.1"
+  }
+}

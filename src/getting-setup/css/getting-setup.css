@@ -1,0 +1,9 @@
+.getting-setup-header {
+    background-image: url(../img/getting-setup-header-sm.jpg); 
+}
+
+@media (min-width: 768px) {
+    .getting-setup-header {
+        background-image: url(../img/getting-setup-header.jpg); 
+    }
+}

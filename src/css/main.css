@@ -1,0 +1,70 @@
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+footer {
+    margin-top: 2em;
+    border-top: 1px solid #DDD;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+li, dd {
+    margin-bottom: 0.5em;
+}
+
+svg {
+    height: 1em;
+    fill: #333;
+}
+
+header {
+    background-image: linear-gradient(to bottom, #391D18, #814236);
+    background-size: cover;
+    background-position: center;
+    color: #FFF;
+    margin-bottom: 20px;
+    padding-bottom: 0.5em;
+}
+
+header h1 {
+    margin: 0;
+    padding-top: 20px;
+}
+
+header .subtitle {
+    font-size: 150%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.term {
+    font-weight: bold;
+}
+
+.replace-token {
+    font-style: italic;
+    background-color: #FFFFAA;
+}
+
+.screenshot {
+    border: 1px dotted #DDD;
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 70px;
+        padding-top: 60px;
+    }
+
+    .contents-header {
+        background-image: url(../img/contents-header.jpg);
+    }
+}
+

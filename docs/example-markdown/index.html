@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Example Markdown Tutorial</title>
+    <link rel="icon" href="../img/favicon.png">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <script defer src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../lib/prism.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="../lib/prism.js"></script> 
+</head>
+<body>
+    <header class="example-markdown-header">
+        <div class="container">
+            <h1>Example Markdown Tutorial</h1>
+            <p class="subtitle">An example of writing in markdown</p>
+        </div>
+    </header>
+    <div class="container">
+        <article>
+            <p>This tutorial is written in <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>. This is a <em>much</em> easier format to write in than HTML! This system uses <a href="https://github.com/showdownjs/showdown">Showdown</a> to convert the markdown to HTML before merging it with the template.</p>
+<h2 id="sec-codeblocks">Code Blocks</h2>
+<p>All the GitHub extensions should be available. For example, you can include language-specific code blocks that will be highlighted using prism.</p>
+<pre><code class="javascript language-javascript">//comments
+var x = 'Hello World!';
+console.log(x);</code></pre>
+<p>And you can include <code>in-line code</code> as well.</p>
+<h2 id="sec-tables">Tables</h2>
+<p>Tables should also work. A Showdown extension adds <code>class="table"</code> to the <code>&lt;table&gt;</code> element so that Bootstrap will format it nicely.</p>
+<table class="table">
+<thead>
+<tr>
+<th>First Name</th>
+<th>Last Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frodo</td>
+<td>Baggins</td>
+</tr>
+<tr>
+<td>Bilbo</td>
+<td>Baggins</td>
+</tr>
+<tr>
+<td>Gandalf</td>
+<td>The Grey</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sec-images">Images</h2>
+<p>You can also include images:</p>
+<p><img src="img/bunny.jpg" alt="cute bunny" /> </p>
+        </article>
+        <footer>
+            <p>
+                <small>
+                    <a href="..">table of contents</a>
+                </small>
+            </p>
+            <p>
+                <small>
+                    &copy; 2017, 
+                    <a href="https://ischool.uw.edu/people/faculty/dlsinfo">Dave Stearns</a>, 
+                    <a href="https://ischool.uw.edu/">The Information School</a>, 
+                    <a href="http://www.washington.edu/">University of Washington</a>
+                </small>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
