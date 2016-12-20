@@ -38,15 +38,17 @@ Teams can setup their own servers to host these centralized repositories, but ma
 
 ## What is GitHub Desktop?
 
-The core git system consists of several command-line tools, which you can [download and use](https://git-scm.com/) if you wish. But if you are not comfortable working at the command line, you can use the [GitHub Desktop application](https://desktop.github.com/) instead. This application presents a friendly, easy-to-use graphical user interface (GUI) over the core command-line tools. This GUI does the same thing the command line tools do, so it's fine to use both interchangeably. This tutorial will show you how to use this GUI application.
+The core git system consists of several command-line tools, which you can [download and use](https://git-scm.com/) if you wish. But if you are not comfortable working at the command line, you should use the [GitHub Desktop application](https://desktop.github.com/) instead. This application presents a friendly, easy-to-use graphical user interface (GUI) over the core command-line tools. This GUI does the same thing the command line tools do, so it's fine to use both interchangeably. 
+
+This tutorial will show you how to use this GUI application, but if you want to learn the command-line tools, go through the interactive [Try Git](https://try.github.io/levels/1/challenges/1) tutorial on GitHub.
 
 ## Creating a Repo
 
-To help you get comfortable with using git, let's create a test repository on GitHub, clone it to your local machine, make some changes, and push those back up to GitHub. This is just for practice right now, but you will have to do something similar for the [Managing Your Files challenge](https://canvas.uw.edu/courses/1100190/assignments/3514568).
+To help you get comfortable with using git, let's create a test repository on GitHub, clone it to your local machine, and make some changes. This is just for practice right now, so don't worry if you mess up and have to start over.
 
-Start by [creating a new repo on GitHub](https://help.github.com/articles/create-a-repo/). Since this is just a test, name it `git-demo`, and give it some sort of description. Keep it public, but make sure you check the box to says you want a README file so that your new repo will contain at least one file.
+Start by [creating a new repo on GitHub](https://help.github.com/articles/create-a-repo/). Since this is just a test, name it `git-demo`, and give it some sort of description. Keep it public, but make sure you check the box that says you want a README file, so that your new repo will contain at least one file.
 
-GitHub repos always live within a particular account, and that account can belong to a single user (like you), or an entire organization. The full name of the repo is a combination of the account name and the repo name, and takes the form of `account-name/repo-name`. A given account may have multiple repos, but each repo must have a unique name within that account. But different accounts may have repos with the same name, as the full name contains both the account name **and** the repo name.
+GitHub repos always live within a particular account, and that account can belong to a single user (like you), or an entire organization. The full name of the repo is a combination of the account name and the repo name, and takes the form of `account-name/repo-name`. A given account may have multiple repos, but each repo must have a unique name within that account. Different accounts may have repos with the same name, as the full name contains both the account name **and** the repo name.
 
 The repositories you will use for the challenges will live inside our course's GitHub organization, and not your individual account. This is because GitHub Education gives us free *private* repositories within an organization we create for a course. Keeping these challenge repositories private ensures that other students can't look at and copy your code.
 
