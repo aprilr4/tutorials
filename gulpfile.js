@@ -161,6 +161,7 @@ gulp.task('watch', ['build'], () => {
         server: DIST_DIR,
         files: DIST_DIR
     });
+    gulp.watch('./src/*/img/*', ['images']);
     gulp.watch(['./src/css/**', './src/*/css/*'], ['global-css']);
     gulp.watch('./src/*/*.md', ['merge-md']);
     gulp.watch('./src/*/*.html', ['merge-html']);
