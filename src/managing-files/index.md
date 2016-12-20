@@ -183,6 +183,16 @@ Normally one of your teammates, bosses, or teachers would merge the pull request
 
 After you merge the pull request, GitHub will automatically close it. You can now go back to the home page for your repository, ensure that you are looking at the `master` branch, and you should now see your changes you made to the `feature-1` branch on the `master` branch as well.
 
+## Sync Changes
+
+When you merge a pull request on the GitHub web site, the merge happens within the master copy of your repository on GitHub, and not within the copy of you repo on your local machine. To synchronize your local copy with the copy up on GitHub, ensure you are on the `master` branch by selecting it using the current branch button (highlighted in green), and then choose the `Sync` button (highlighted in red).
+
+![github sync button](img/github-sync.png)
+
+Synchronizing will copy down and merge all commits that your local version of the repository hasn't seen yet, so that your local copy is up-to-date with the server copy on GitHub. 
+
+<div class="alert alert-warning">It's a good idea to do this operation at the start of every work session, just so you ensure you have the most up-to-date versions of your files. This is especially true if you work on the same repository from multiple machines (home vs work, or a laptop and a desktop). Each copy of your repo on each machine is separate and independent from the others, so you need to synchronize in order to pick up changes that you might have made and published from another computer.</div>
+
 ## Lather, Rinse, Repeat
 
 You've now completed one cycle of the typical GitHub workflow:
