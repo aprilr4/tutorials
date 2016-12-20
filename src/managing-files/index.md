@@ -6,7 +6,7 @@ Thankfully, there are a class of tools that are designed to make managing all th
 
 ## What is Git?
 
-Git is a system that can store, retrieve, and merge various versions of your files. It's kind of like Dropbox and Google Docs, but with two big differences:
+Git is an archiving system that can store, retrieve, and merge various versions of your files. It's kind of like Dropbox and Google Docs, but with two big differences:
 
 - New versions of your files must be explicitly committed when they are ready. Git doesn't save a new version every time you save a file to disk. That approach works fine for word-processing documents, but not for programming files. You typically need to write some code, save it, load it in your browser, test it, debug, make some fixes, and test again before you're ready to commit a new version.
 - For text files (which nearly all your web development files will be), git pays attention to changes at the line level, and not just the file level. That means it can automatically merge together different changes made to different parts of the same file.
@@ -21,11 +21,8 @@ To understand how git works, you need to understand its core concepts. Read this
 
 - **repository (repo):** an archive containing all the committed versions of all your files, along with some additional metadata, stored in a hidden subdirectory named `.git` within your project directory. If you want to sound cool and in-the-know, call this a "repo."
 - **commit:** a set of file versions that have been added to the repository, along with the name of the person who did the commit, a message describing the commit, and a timestamp. This extra tracking information allows you to see when, why, and by whom changes were made to a given file.
-- **staging area:** a set of new changes that are ready to be committed to the repository. All changes to all files in the staging area will be included in the next commit, but not changes made to other files that are not in the staging area. This allows you to commit the changes you are done with, while keeping your work-in-progress out of the repository.
-- **branch:** a separate stream of changes within a repo that are isolated from each other. All git repositories start with one branch named `master`, but you can create other branches if you wish. Changes committed to one branch are kept separate from those committed to other branches, allowing you to work on new features or crazy ideas without contaminating the `master` branch. Once a feature is complete, you can merge committed changes from the new feature branch into the `master` branch with one quick command.
-- **pull request:** a request to merge changes from one branch into another, or from one repository into another. Pull requests allow your team members or bosses to review your changes and approve them before they are merged back into the `master` branch, which is considered the master version of the code.
-- **remote:** a link to a copy of this same repository on a different machine. Typically this will be a central version of the repository that all local copies on your various development machines point to. You can push commits to, and pull commits from, a remote repository to keep everything in sync. You can also add more than one remote link if you are working with multiple remote repositories.
-- **merge conflict:** a condition that occurs when you merge commits pulled from another branch or repository that include changes to the same lines that you've already changed locally. In this case, git doesn't which version is correct, so you must resolve the conflict by choosing a winner, or manually combining the changes.
+- **remote:** a link to a copy of this same repository on a different machine. Typically this will be a central version of the repository that all local copies on your various development machines point to (known as the `origin`). You can push/publish commits to, and pull commits from, a remote repository to keep everything in sync. You can also add more than one remote link if you are working with multiple remote repositories.
+- **merge conflict:** a condition that occurs when you merge commits pulled from a remote repository that include changes to the same lines that you've already changed locally. In this case, git doesn't which version is correct, so you must resolve the conflict by choosing a winner, or manually combining the changes.
 - **.gitignore file:** a file in your project's root directory that contains paths or specific files that git should ignore. This is very useful for keeping things out of the repository that should never be in there, such as current workspace settings saved by an Integrated Development Environment (IDE), or files containing login information or secret keys.
 
 ## What is GitHub?
@@ -44,9 +41,15 @@ This tutorial will show you how to use this GUI application, but if you want to 
 
 ## Creating a Repo
 
-To help you get comfortable with using git, let's create a test repository on GitHub, clone it to your local machine, and make some changes. This is just for practice right now, so don't worry if you mess up and have to start over.
+To help you get comfortable with using git, let's create a test repository on GitHub, clone it to your local machine, and make some changes.
 
-Start by [creating a new repo on GitHub](https://help.github.com/articles/create-a-repo/). Since this is just a test, name it `git-demo`, and give it some sort of description. Keep it public, but make sure you check the box that says you want a README file, so that your new repo will contain at least one file.
+Start by [creating a new repo on GitHub](https://help.github.com/articles/create-a-repo/) within your account. Use the following settings when you create the repo:
+
+- Repository Name: `git-tutorial`
+- Description: `Sample repo for git tutorial`
+- Public vs Private: choose `Public`
+- Initialize this repository with a README: ensuire that you check that box so that your repo will contain a README file
+- Choose `Create repository`
 
 GitHub repos always live within a particular account, and that account can belong to a single user (like you), or an entire organization. The full name of the repo is a combination of the account name and the repo name, and takes the form of `account-name/repo-name`. A given account may have multiple repos, but each repo must have a unique name within that account. Different accounts may have repos with the same name, as the full name contains both the account name **and** the repo name.
 
@@ -76,23 +79,9 @@ After the clone has completed, you will see something like this in your GitHub D
 
 This shows you the history of the repo so far, which is pretty minimal. There's only one commit, made by you when you created the repo on GitHub.
 
-## Create a Branch
-
-Although it's not strictly required, it's good practice to create a new branch whenever you want to make significant changes to the files in your repository. This allows you to isolate those changes from the master version of the files in the `master` branch. If you end up deciding your changes were a bad idea, you can simply delete the branch and the `master` branch remains unaffected. If you decide your changes were good, you can then create a pull request so that your teammates or bosses (or teachers) can review your changes.
-
-Create a new branch by clicking the New Branch icon in the toolbar (highlighted here in red). Ensure that `master` is selected as the `From` branch, and name your new branch `feature-1`.
-
-![GitHub Desktop create branch](img/github-create-branch.png)
-
-After you create the branch, your GitHub Desktop app will looks something like this:
-
-![GitHub Desktop after create branch](img/github-after-branch.png)
-
-It's switched to showing you all uncommitted changes in your files. Since we haven't changed anything yet, there's nothing to show. Let's make some changes.
-
 ## Open the Repo in Visual Studio Code
 
-We will now use Visual Studio code to edit some files in our repo. If you haven't already done so, please read through [The Basics of Visual Studio Code](https://code.visualstudio.com/docs/editor/codebasics) to get familiar with the tool and how it works.
+We will now use Visual Studio code to create and edit some files in our repo. If you haven't already done so, please read through [The Basics of Visual Studio Code](https://code.visualstudio.com/docs/editor/codebasics) to get familiar with the tool and how it works.
 
 Start Visual Studio Code and choose the `File` menu, and choose the `Open...` menu item. This will display your operating system's standard file open dialog, but with a twist: you can select an open entire folder here. Find your repository folder, which was created earlier when you cloned your repo. Click on the entire folder and choose `Open`. You should see your repo files listed on the left.
 
@@ -100,15 +89,15 @@ Start Visual Studio Code and choose the `File` menu, and choose the `Open...` me
 
 ## Create an Ignore File
 
-By default git will try to track every file and folder in your repository folder, but there are some files and folders you really don't want to add to your repository. A good example is the `.DS_Store` file that OS X creates when you arrange the icons in a folder. OS X uses this file to track meta-data about the folder, but that's not really part of your code. It's specific to your machine and your machine only, so we don't want to add that to our repository. Other examples include the `.vscode` folder, which Visual Studio code creates to track workspace-specific data that shouldn't be added to your repo.
+By default git will try to track every file and folder in your repository folder, but there are some files and folders you really don't want to add to your repository. A good example is the `.DS_Store` file that Mac OS X sometimes creates within a folder. OS X uses this file to track meta-data about the folder, such as the relative positions of the icons, but that's not really part of your code. It's specific to your machine and your machine only, so you don't want to add that to your repository. Another example is the `node_modules` folder, which gets created when you install dependent modules, and you never need to add to your repository.
 
-Thankfully it's easy to tell git to ignore these files. All we need to do is create a file named `.gitignore` and enter all the file/folder names we want git to ignore.
+Thankfully it's easy to tell git to ignore these files. All we need to do is create a file named `.gitignore` in the repository's root folder, and enter all the file/folder names we want git to ignore.
 
-On the `File` menu, choose `New File` to create a new file in your project, and give it the name `.gitignore` (note the leading dot). If prompted, confirm that you really do want to start the name with a dot. After creating the file, add these lines to it and save the file:
+On the `File` menu of Visual Studio Code, choose `New File` to create a new file in your project, and give it the name `.gitignore` (note the leading dot). If prompted, confirm that you really do want to start the name with a dot. After creating the file, add these lines to it and save the file:
 
 ```
 .DS_Store
-.vscode
+node_modules
 ```
 
 Visual Studio Code should now look like this:
@@ -123,101 +112,122 @@ Add some more lines to this file, using the [Markdown Cheatsheet](https://github
 
 ![visual studio code after adding to README.md file](img/vscode-after-readme.png)
 
+Note that Visual Studio Code graphically shows a green gutter bar next to the lines you've added. It uses git to determine which lines have changed within the current file, and shows indicators in the gutter next to those lines.
+
 ## Commit your Changes
 
 We've made some changes to our files, but before we can send them back to GitHub, we need to **commit** those changes to our repository. When we commit changes, git automatically captures when the commit was done, who did it, and prompts us to supply a message describing why the commit was done. All of this meta-data is stored with the commit in the repository, and remains visible in the log. This enables us to know exactly who made a change, when it was made, and why.
 
-Return to the GitHub Desktop app. It should show you the changes you've made:
+Return to the GitHub Desktop app. It should show you the changes you've made. If you don't see the changes, make sure you have selected the tab at the top that says `2 Uncommitted Changes`:
 
 ![github desktop after changes](img/github-after-changes.png)
 
-Note that for text files, git tracks changes at the line level. This enables git to **merge** changes to the same file from different developers as long as those developers change different lines in the file. If they change the same lines, the second one to commit will get a **merge conflict** error, and git will ask that developer to resolve which version of the line should remain.
+For text files, git tracks changes at the line level. This enables git to **merge** changes to the same file from different developers as long as those developers change different lines in the file. If they change the same lines, the second developer to commit will get a **merge conflict** error, and git will ask that developer to resolve which version of the line should remain.
 
-The `Summary` and `Description` boxes are where you can enter a message about what the commit contains and why it's being made. The `Summary` is meant to be a short overview, and the `Description` may contain a longer explanation, or may be left blank. Enter something in the `Summary` box and choose the `Commit to feature-1` button to commit your changes to the repository.
+The `Summary` and `Description` boxes are where you can enter a message about what the commit contains and why it's being made. The `Summary` is meant to be a short overview, and the `Description` may contain a longer explanation, or may be left blank. Enter something in the `Summary` box and choose the `Commit to master` button to commit your changes to the repository.
 
 ![github desktop after changes](img/github-after-commit.png)
 
 The list of changes should disappear and a message should be shown indicating that the commit was completed. Note that you click the `Undo` button to undo that commit if you decided it was a bad idea.
 
-You can use the `History` tab at the top to view the entire history of the current branch, which at this point contains one commit.
+You can use the `History` tab at the top to view the history so far, which at this point contains two commits.
 
 ![github desktop history](img/github-history.png)
 
-## Publish to GitHub
+These commits will stay in your repo forever, allowing you not only to reconstruct the history of a given file, but also revert back to a previous version of the file if you run into problems.
 
-When you make a new commit, that is saved to your local repo on your machine only. To back it up and share it with others, you should choose the `Publish` button (highlighted in red):
+## Sync with GitHub
 
-![github desktop publish button](img/github-publish-button.png)
+When you make a new commit, that is saved to your local repo on your machine only. To back it up and share it with others, you should choose the `Sync` button (highlighted in red):
+
+![github desktop sync button](img/github-sync-button.png)
+
+This will push the changes you've committed to your local repo up to the version of your repo on GitHub. It will also pull any new commits that might have been made to the server version that your local copy hasn't seen yet.
 
 ## View Changes on GitHub
 
-After the publish finishes, go back to your web browser and look at your repo's home page on GitHub. By default, it will show you the contents of the `master` branch, which remains unaltered because we committed our changes to the `feature-1` branch (remember that all commits to a branch are kept isolated on that branch until they are merged into another branch). But if you choose the button labeled `Branch: master`, you should see a drop-down that lets you select your new `feature-1` branch:
-
-![github choose branch](img/github-view-branch.png)
-
-After you choose the `feature-1` branch, you should be able to see the new `.gitignore` file, as well as your changes to the `README.md` file. Click on the file names to view their contents. Your commit message summary will appear to the right of each file, and if you click that message, you'll see all of the lines that were changed in each of the files during that commit. 
-
-Note that if you switch back to the `master` branch, those changes are no longer shown. Commits made to branches are kept separate from one another until you merge them. One common way to accomplish that merging is to create a **Pull Request**, which allows your teammates, bosses, or teachers to review your changes before they get merged into the `master` branch.
-
-## Create a Pull Request
-
-You can create a pull request either through the GitHub Desktop application, or through the GitHub web site. In the GitHub Desktop application, make sure you are looking at the `feature-1` branch (see branch selector highlighted in green), and then choose the `Pull Request` button at the top-right of the window (highlighted in red):
-
-![github create pull request button](img/github-pull-req-button.png)
-
-The default summary message will be the same as your last commit, and you can use that, or change it to something else like `merge feature-1 commits into master`. Then click the `Send Pull Request` button to create the pull request up on GitHub. If all went well, it should show you a confirmation along with a link you can click to view the pull request on GitHub.
-
-To create the pull request via the GitHub web site, choose the `New pull request` button on your repo's home page, and on the Open Pull Request page, choose `master` as the `base` branch, and `feature-1` as the `compare` branch. Just as in the GitHub Desktop app, you can use the default summary message or change it to whatever you like. Then choose the `Create pull request` button.
-
-A pull request is only a *request* to merge commits from one branch to another. This request is typically reviewed by others, and comments are added regarding any code that needs further changes. Any additional commits made to the `feature-1` branch will automatically get included into the pull request until it is merged and/or closed.
-
-Comments can be inserted in-line to your code. While viewing the pull request, choose the `Files changed` tab and move your mouse over the lines. You'll see a blue `+` button appear and if you click it, you can add a comment regarding that particular line.
-
-![github pull request comment](img/github-pull-req-comment.png)
-
-## Merge the Pull Request
-
-Normally one of your teammates, bosses, or teachers would merge the pull request after reviewing your code, but for this tutorial, complete the merge yourself. Choose the big green `Merge pull request` button and confirm that action by clicking the `Confirm merge` button.
-
-![github pull request merge button](img/github-pull-req-merge.png)
-
-After you merge the pull request, GitHub will automatically close it. You can now go back to the home page for your repository, ensure that you are looking at the `master` branch, and you should now see your changes you made to the `feature-1` branch on the `master` branch as well.
-
-## Sync Changes
-
-When you merge a pull request on the GitHub web site, the merge happens within the master copy of your repository on GitHub, and not within the copy of you repo on your local machine. To synchronize your local copy with the copy up on GitHub, ensure you are on the `master` branch by selecting it using the current branch button (highlighted in green), and then choose the `Sync` button (highlighted in red).
-
-![github sync button](img/github-sync.png)
-
-Synchronizing will copy down and merge all commits that your local version of the repository hasn't seen yet, so that your local copy is up-to-date with the server copy on GitHub. 
-
-<div class="alert alert-warning">It's a good idea to do this operation at the start of every work session, just so you ensure you have the most up-to-date versions of your files. This is especially true if you work on the same repository from multiple machines (home vs work, or a laptop and a desktop). Each copy of your repo on each machine is separate and independent from the others, so you need to synchronize in order to pick up changes that you might have made and published from another computer.</div>
+After the synchronize operation finishes, go back to your web browser and look at your repo's home page on GitHub. You should be able to see the new `.gitignore` file, as well as your changes to the `README.md` file. Click on the file names to view their contents. Your commit message summary will appear to the right of each file, and if you click that message, you'll see all of the lines that were changed in each of the files during that commit. 
 
 ## Lather, Rinse, Repeat
 
 You've now completed one cycle of the typical GitHub workflow:
 
-1. Create a new branch for each new major feature
-1. Make your changes to your files
-1. Commit your changes to the feature branch and publish them to GitHub at the end of each work session
-1. When you are completely done with your feature, create a pull request asking to merge commits from the feature branch into the `master` branch
-1. Let others review your changes, approve them, and merge them into the `master` branch
+1. Make changes to your files
+1. Commit your changes to your local repo
+1. Synchronize your local repo with GitHub
 
 Keep practicing by trying the following:
 
-- Make more commits to the `feature-1` branch, publish them, create another pull request, and merge the pull request into `master`.
-- Create another branch named `feature-2` off of the `master` branch (i.e., ensure that `master` is selected as the `From` branch). Then do the following:
-	- Find a picture you like on [Pixabay](https://pixabay.com/), download it, and move it to your repo folder. 
-	- Switch back to GitHub Desktop. The picture should show up as a new file, which you can commit to the `feature-2` branch. 
-	- Publish the newly committed file to your `feature-2` branch on GitHub. 
-	- Create a pull request, and merge into `master`. Git can manage binary files like pictures, but those files are treated as an atomic units: it can't track changes to parts of the file like it can with text files, so each commit records a new version of the entire file.
-- When working alone, you can simply merge commits from one branch into another directly without creating a formal pull request. Try that now by doing the following:
-	-Create another branch off of `master` named `feature-3`. 
-	- Make some changes to the `README.md` file and commit them to the `feature-3` branch. 
-	- Switch back to the `master` branch (highlighted in green), click on the `Compare` button, and choose `feature-3` from the drop-down list.
-	- Choose the `Update from feature-3` button to directly merge commits made to `feature-3` into `master`.
-	- Choose the `Sync` button to push this direct merge back up to GitHub.
+- Make some more changes to the `README.md` file, commit those changes to your local repo, and synchronize with GitHub. Use the [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) as a syntax reference.
+- Find a picture you like on [Pixabay](https://pixabay.com/), download it and move it to your repo folder, then commit and synchronize. Git can manage any sort of file, including binary media files.
 
-![github direct merge](img/github-direct-merge.png)
+## Advanced Topics
 
+The rest of this tutorial is for students who want to learn the more advanced features of git, including branching, merging, and pull requests. These topics are entirely optional&mdash;you do not need to know these to complete the rest of this course. But if you want to dive deeper, read on....
 
+### Branching and Merging
+
+So far you've made all of your changes to repository on what is called the `master` branch. A **branch** is a separate space within a repository, and every repo starts with one branch named `master`. But you can create as many branches within a repo as you want, and each branch is like an isolated space with its own separate stream of commits. This allows you to safely work on new, crazy features without contaminating the code in the `master` branch. If your feature turns out to be a bad idea, you can just delete the new branch and return to the code the way it was on the `master` branch. But if your feature turned out to be a good idea, you can **merge** the commits you made to the new branch back into the `master` branch, thereby updating the master copy of your code.
+
+To create a new branch, use the new branch button in the GitHub Desktop toolbar:
+
+![github desktop create branch](img/github-create-branch.png)
+
+Name your branch `feature-1` and create it. GitHub Desktop will update to look like this:
+
+![github desktop after create branch](img/github-after-branch.png)
+
+Notice that it's graphically showing you that a new branch named `feature-1` has split off from the `master` branch. We can now make changes to our files and commit them to this new branch.
+
+Go back to Visual Studio Code and make some more changes to your `README.md` file. Then return to GitHub Desktop and commit those changes to the `feature-1` branch. Fill out the `Summary` field and choose the `Commit to feature-1` button:
+
+![github desktop commit to branch](img/github-commit-to-branch.png)
+
+This commit is now isolated just to the `feature-1` branch. Your code on the `master` branch remains unaffected. To see this, switch back to the `master` branch by choosing the branch button in the toolbar, and selecting `master` from the drop-down:
+
+![github desktop switch branches](img/github-switch-master.png)
+
+Then return to Visual Studio Code, and note that the most recent change you made to the `README.md` file is no longer there! That's because you are viewing the code on the `master` branch, and your most recent change was made to the `feature-1` branch. Use GitHub Desktop to switch back to the `feature-1` branch, and notice how your edit to the `README.md` reappears!
+
+To merge this commit into the `master` branch, switch back to the `master` branch using GitHub Desktop, and then use the `Compare` button to compare the `master` branch to the `feature-1` branch.
+
+![github desktop compare branches](img/github-compare-branches.png)
+
+The compare view will graphically show you that one commit has been made to the `feature-1` branch that is not yet in the `master` branch (highlighted in red):
+
+![github desktop compare commits](img/github-compare-commits.png)
+
+To merge this commit into the `master` branch, choose the `Update from feature-1` button. After the merge completes, choose the `Sync` button to push this newly-merged commit up to GitHub. Your `master` branch should now contain all the same changes you made to your `feature-1` branch. At this point, you can delete the `feature-1` branch, or just keep it around for reference.
+
+### Pull Requests
+
+Merging directly from a feature branch back into `master` is something you can do if you are working alone, but if you are working in a team, you will generally need to let others review your changes before they are merged. This is known as a **code review** and it's an essential part of team-based development.
+
+GitHub enables code review through a feature called **pull requests**. When a developer wants to merge commits made to a feature branch back into `master`, the developer creates a pull request on GitHub, which others can then review. You can do this right from the GitHub Desktop app.
+
+Create another branch named `feature-2`, make some more changes to your `README.md` file, and commit those changes to the `feature-2` branch. Then use the `Pull Request` button to create a new pull request, asking to merge the commits you've made to the `feature-2` branch back into the `master` branch.
+
+![github desktop create pull request](img/github-pull-req.png)
+
+Choose the `Send Pull Request` button to create the new pull request on GitHub. After it finishes, you should see a confirmation with a hyperlink that will take you directly to the new pull request:
+
+![github desktop create pull request](img/github-after-pull-req.png)
+
+Click the link to view the pull request in your browser. If you click on the `Files changed` tab across the top, you can see all of the changes in the pull request. If you hover over a line, a blue `+` button appears and if you click that, you can add in-line comments about the changes. This is how teams do formal code reviews.
+
+![github add comment to pull request](img/github-pull-req-comment.png)
+
+To merge the pull request, return to the `Conversation` tab and choose the big green `Merge pull request` button. After you confirm, GitHub will merge the commit you made to the `feature-2` branch into the `master` branch.
+
+Since this merge took place on the server, your local copy of the repo doesn't know about it yet. To pull that change into your local repo, return to the GitHub Desktop application, switch to the `master` branch, and choose the `Sync` button to synchronize your local repo with the version up on GitHub. After the sync, you should see a new commit in the history with a title that starts with `Merge pull request #1 from...`
+
+### Keep Practicing
+
+Now that you know how to create branches and pull requests, go through the basic cycle a few more times:
+
+1. For each major new feature, create a new branch.
+1. Make changes to your files, and commit those changes at the end of each work session.
+1. When you are done with the feature, either directly merge the commits back into the `master` branch, or create a pull request to facilitate a code review.
+1. If you merge on the server, synchronize your `master` branch to pull the new commits down from the server.
+
+Soon this will feel normal and you won't even have to think about it.
