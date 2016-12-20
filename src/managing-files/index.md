@@ -78,7 +78,7 @@ This shows you the history of the repo so far, which is pretty minimal. There's 
 
 Although it's not strictly required, it's good practice to create a new branch whenever you want to make significant changes to the files in your repository. This allows you to isolate those changes from the master version of the files in the `master` branch. If you end up deciding your changes were a bad idea, you can simply delete the branch and the `master` branch remains unaffected. If you decide your changes were good, you can then create a pull request so that your teammates or bosses (or teachers) can review your changes.
 
-Create a new branch by clicking the New Branch icon in the toolbar (highlighted here in red). Name your new branch `feature-1`.
+Create a new branch by clicking the New Branch icon in the toolbar (highlighted here in red). Ensure that `master` is selected as the `From` branch, and name your new branch `feature-1`.
 
 ![GitHub Desktop create branch](img/github-create-branch.png)
 
@@ -149,12 +149,63 @@ When you make a new commit, that is saved to your local repo on your machine onl
 
 ## View Changes on GitHub
 
-After the publish finishes, go back to your web browser and look at your repo's home page on GitHub. By default, it will show you the contents of the `master` branch, which remains unaltered because we committed our changes to the `feature-1` branch. But if you choose the button labeled `Branch: master`, you should see a drop-down that lets you select your new `feature-1` branch:
+After the publish finishes, go back to your web browser and look at your repo's home page on GitHub. By default, it will show you the contents of the `master` branch, which remains unaltered because we committed our changes to the `feature-1` branch (remember that all commits to a branch are kept isolated on that branch until they are merged into another branch). But if you choose the button labeled `Branch: master`, you should see a drop-down that lets you select your new `feature-1` branch:
 
 ![github choose branch](img/github-view-branch.png)
 
-After you choose the `feature-1` branch, you should be able to see the new `.gitignore` file, as well as your changes to the `README.md` file. Note that if you switch back to the `master` branch, those changes are no longer shown. Commits made to branches are kept separate from one another until you merge them. The best way to do that merging is to use a **Pull Request**, which allows your teammates, bosses, or teachers to review your changes before they get merged into the `master` branch.
+After you choose the `feature-1` branch, you should be able to see the new `.gitignore` file, as well as your changes to the `README.md` file. Click on the file names to view their contents. Your commit message summary will appear to the right of each file, and if you click that message, you'll see all of the lines that were changed in each of the files during that commit. 
+
+Note that if you switch back to the `master` branch, those changes are no longer shown. Commits made to branches are kept separate from one another until you merge them. One common way to accomplish that merging is to create a **Pull Request**, which allows your teammates, bosses, or teachers to review your changes before they get merged into the `master` branch.
 
 ## Create a Pull Request
+
+You can create a pull request either through the GitHub Desktop application, or through the GitHub web site. In the GitHub Desktop application, make sure you are looking at the `feature-1` branch (see branch selector highlighted in green), and then choose the `Pull Request` button at the top-right of the window (highlighted in red):
+
+![github create pull request button](img/github-pull-req-button.png)
+
+The default summary message will be the same as your last commit, and you can use that, or change it to something else like `merge feature-1 commits into master`. Then click the `Send Pull Request` button to create the pull request up on GitHub. If all went well, it should show you a confirmation along with a link you can click to view the pull request on GitHub.
+
+To create the pull request via the GitHub web site, choose the `New pull request` button on your repo's home page, and on the Open Pull Request page, choose `master` as the `base` branch, and `feature-1` as the `compare` branch. Just as in the GitHub Desktop app, you can use the default summary message or change it to whatever you like. Then choose the `Create pull request` button.
+
+A pull request is only a *request* to merge commits from one branch to another. This request is typically reviewed by others, and comments are added regarding any code that needs further changes. Any additional commits made to the `feature-1` branch will automatically get included into the pull request until it is merged and/or closed.
+
+Comments can be inserted in-line to your code. While viewing the pull request, choose the `Files changed` tab and move your mouse over the lines. You'll see a blue `+` button appear and if you click it, you can add a comment regarding that particular line.
+
+![github pull request comment](img/github-pull-req-comment.png)
+
+## Merge the Pull Request
+
+Normally one of your teammates, bosses, or teachers would merge the pull request after reviewing your code, but for this tutorial, complete the merge yourself. Choose the big green `Merge pull request` button and confirm that action by clicking the `Confirm merge` button.
+
+![github pull request merge button](img/github-pull-req-merge.png)
+
+After you merge the pull request, GitHub will automatically close it. You can now go back to the home page for your repository, ensure that you are looking at the `master` branch, and you should now see your changes you made to the `feature-1` branch on the `master` branch as well.
+
+## Lather, Rinse, Repeat
+
+You've now completed one cycle of the typical GitHub workflow:
+
+1. Create a new branch for each new major feature
+1. Make your changes to your files
+1. Commit your changes to the feature branch and publish them to GitHub at the end of each work session
+1. When you are completely done with your feature, create a pull request asking to merge commits from the feature branch into the `master` branch
+1. Let others review your changes, approve them, and merge them into the `master` branch
+
+Keep practicing by trying the following:
+
+- Make more commits to the `feature-1` branch, publish them, create another pull request, and merge the pull request into `master`.
+- Create another branch named `feature-2` off of the `master` branch (i.e., ensure that `master` is selected as the `From` branch). Then do the following:
+	- Find a picture you like on [Pixabay](https://pixabay.com/), download it, and move it to your repo folder. 
+	- Switch back to GitHub Desktop. The picture should show up as a new file, which you can commit to the `feature-2` branch. 
+	- Publish the newly committed file to your `feature-2` branch on GitHub. 
+	- Create a pull request, and merge into `master`. Git can manage binary files like pictures, but those files are treated as an atomic units: it can't track changes to parts of the file like it can with text files, so each commit records a new version of the entire file.
+- When working alone, you can simply merge commits from one branch into another directly without creating a formal pull request. Try that now by doing the following:
+	-Create another branch off of `master` named `feature-3`. 
+	- Make some changes to the `README.md` file and commit them to the `feature-3` branch. 
+	- Switch back to the `master` branch (highlighted in green), click on the `Compare` button, and choose `feature-3` from the drop-down list.
+	- Choose the `Update from feature-3` button to directly merge commits made to `feature-3` into `master`.
+	- Choose the `Sync` button to push this direct merge back up to GitHub.
+
+![github direct merge](img/github-direct-merge.png)
 
 

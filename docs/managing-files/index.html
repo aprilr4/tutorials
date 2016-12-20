@@ -74,7 +74,7 @@
 <p>This shows you the history of the repo so far, which is pretty minimal. There's only one commit, made by you when you created the repo on GitHub.</p>
 <h2 id="sec-createabranch">Create a Branch</h2>
 <p>Although it's not strictly required, it's good practice to create a new branch whenever you want to make significant changes to the files in your repository. This allows you to isolate those changes from the master version of the files in the <code>master</code> branch. If you end up deciding your changes were a bad idea, you can simply delete the branch and the <code>master</code> branch remains unaffected. If you decide your changes were good, you can then create a pull request so that your teammates or bosses (or teachers) can review your changes.</p>
-<p>Create a new branch by clicking the New Branch icon in the toolbar (highlighted here in red). Name your new branch <code>feature-1</code>.</p>
+<p>Create a new branch by clicking the New Branch icon in the toolbar (highlighted here in red). Ensure that <code>master</code> is selected as the <code>From</code> branch, and name your new branch <code>feature-1</code>.</p>
 <p><img src="img/github-create-branch.png" alt="GitHub Desktop create branch" /></p>
 <p>After you create the branch, your GitHub Desktop app will looks something like this:</p>
 <p><img src="img/github-after-branch.png" alt="GitHub Desktop after create branch" /></p>
@@ -109,10 +109,51 @@
 <p>When you make a new commit, that is saved to your local repo on your machine only. To back it up and share it with others, you should choose the <code>Publish</code> button (highlighted in red):</p>
 <p><img src="img/github-publish-button.png" alt="github desktop publish button" /></p>
 <h2 id="sec-viewchangesongithub">View Changes on GitHub</h2>
-<p>After the publish finishes, go back to your web browser and look at your repo's home page on GitHub. By default, it will show you the contents of the <code>master</code> branch, which remains unaltered because we committed our changes to the <code>feature-1</code> branch. But if you choose the button labeled <code>Branch: master</code>, you should see a drop-down that lets you select your new <code>feature-1</code> branch:</p>
+<p>After the publish finishes, go back to your web browser and look at your repo's home page on GitHub. By default, it will show you the contents of the <code>master</code> branch, which remains unaltered because we committed our changes to the <code>feature-1</code> branch (remember that all commits to a branch are kept isolated on that branch until they are merged into another branch). But if you choose the button labeled <code>Branch: master</code>, you should see a drop-down that lets you select your new <code>feature-1</code> branch:</p>
 <p><img src="img/github-view-branch.png" alt="github choose branch" /></p>
-<p>After you choose the <code>feature-1</code> branch, you should be able to see the new <code>.gitignore</code> file, as well as your changes to the <code>README.md</code> file. Note that if you switch back to the <code>master</code> branch, those changes are no longer shown. Commits made to branches are kept separate from one another until you merge them. The best way to do that merging is to use a <strong>Pull Request</strong>, which allows your teammates, bosses, or teachers to review your changes before they get merged into the <code>master</code> branch.</p>
+<p>After you choose the <code>feature-1</code> branch, you should be able to see the new <code>.gitignore</code> file, as well as your changes to the <code>README.md</code> file. Click on the file names to view their contents. Your commit message summary will appear to the right of each file, and if you click that message, you'll see all of the lines that were changed in each of the files during that commit. </p>
+<p>Note that if you switch back to the <code>master</code> branch, those changes are no longer shown. Commits made to branches are kept separate from one another until you merge them. One common way to accomplish that merging is to create a <strong>Pull Request</strong>, which allows your teammates, bosses, or teachers to review your changes before they get merged into the <code>master</code> branch.</p>
 <h2 id="sec-createapullrequest">Create a Pull Request</h2>
+<p>You can create a pull request either through the GitHub Desktop application, or through the GitHub web site. In the GitHub Desktop application, make sure you are looking at the <code>feature-1</code> branch (see branch selector highlighted in green), and then choose the <code>Pull Request</code> button at the top-right of the window (highlighted in red):</p>
+<p><img src="img/github-pull-req-button.png" alt="github create pull request button" /></p>
+<p>The default summary message will be the same as your last commit, and you can use that, or change it to something else like <code>merge feature-1 commits into master</code>. Then click the <code>Send Pull Request</code> button to create the pull request up on GitHub. If all went well, it should show you a confirmation along with a link you can click to view the pull request on GitHub.</p>
+<p>To create the pull request via the GitHub web site, choose the <code>New pull request</code> button on your repo's home page, and on the Open Pull Request page, choose <code>master</code> as the <code>base</code> branch, and <code>feature-1</code> as the <code>compare</code> branch. Just as in the GitHub Desktop app, you can use the default summary message or change it to whatever you like. Then choose the <code>Create pull request</code> button.</p>
+<p>A pull request is only a <em>request</em> to merge commits from one branch to another. This request is typically reviewed by others, and comments are added regarding any code that needs further changes. Any additional commits made to the <code>feature-1</code> branch will automatically get included into the pull request until it is merged and/or closed.</p>
+<p>Comments can be inserted in-line to your code. While viewing the pull request, choose the <code>Files changed</code> tab and move your mouse over the lines. You'll see a blue <code>+</code> button appear and if you click it, you can add a comment regarding that particular line.</p>
+<p><img src="img/github-pull-req-comment.png" alt="github pull request comment" /></p>
+<h2 id="sec-mergethepullrequest">Merge the Pull Request</h2>
+<p>Normally one of your teammates, bosses, or teachers would merge the pull request after reviewing your code, but for this tutorial, complete the merge yourself. Choose the big green <code>Merge pull request</code> button and confirm that action by clicking the <code>Confirm merge</code> button.</p>
+<p><img src="img/github-pull-req-merge.png" alt="github pull request merge button" /></p>
+<p>After you merge the pull request, GitHub will automatically close it. You can now go back to the home page for your repository, ensure that you are looking at the <code>master</code> branch, and you should now see your changes you made to the <code>feature-1</code> branch on the <code>master</code> branch as well.</p>
+<h2 id="sec-latherrinserepeat">Lather, Rinse, Repeat</h2>
+<p>You've now completed one cycle of the typical GitHub workflow:</p>
+<ol>
+<li>Create a new branch for each new major feature</li>
+<li>Make your changes to your files</li>
+<li>Commit your changes to the feature branch and publish them to GitHub at the end of each work session</li>
+<li>When you are completely done with your feature, create a pull request asking to merge commits from the feature branch into the <code>master</code> branch</li>
+<li>Let others review your changes, approve them, and merge them into the <code>master</code> branch</li>
+</ol>
+<p>Keep practicing by trying the following:</p>
+<ul>
+<li>Make more commits to the <code>feature-1</code> branch, publish them, create another pull request, and merge the pull request into <code>master</code>.</li>
+<li>Create another branch named <code>feature-2</code> off of the <code>master</code> branch (i.e., ensure that <code>master</code> is selected as the <code>From</code> branch). Then do the following:
+
+<ul>
+<li>Find a picture you like on <a href="https://pixabay.com/">Pixabay</a>, download it, and move it to your repo folder. </li>
+<li>Switch back to GitHub Desktop. The picture should show up as a new file, which you can commit to the <code>feature-2</code> branch. </li>
+<li>Publish the newly committed file to your <code>feature-2</code> branch on GitHub. </li>
+<li>Create a pull request, and merge into <code>master</code>. Git can manage binary files like pictures, but those files are treated as an atomic units: it can't track changes to parts of the file like it can with text files, so each commit records a new version of the entire file.</li></ul></li>
+<li>When working alone, you can simply merge commits from one branch into another directly without creating a formal pull request. Try that now by doing the following:
+-Create another branch off of <code>master</code> named <code>feature-3</code>. 
+
+<ul>
+<li>Make some changes to the <code>README.md</code> file and commit them to the <code>feature-3</code> branch. </li>
+<li>Switch back to the <code>master</code> branch (highlighted in green), click on the <code>Compare</code> button, and choose <code>feature-3</code> from the drop-down list.</li>
+<li>Choose the <code>Update from feature-3</code> button to directly merge commits made to <code>feature-3</code> into <code>master</code>.</li>
+<li>Choose the <code>Sync</code> button to push this direct merge back up to GitHub.</li></ul></li>
+</ul>
+<p><img src="img/github-direct-merge.png" alt="github direct merge" /></p>
         </article>
         <footer>
             <p>
