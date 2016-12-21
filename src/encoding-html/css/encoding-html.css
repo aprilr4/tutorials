@@ -1,0 +1,9 @@
+.encoding-html-header {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../img/html-header-sm.jpg); 
+}
+
+@media (min-width: 768px) {
+    .encoding-html-header {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../img/html-header.jpg); 
+    }
+}
