@@ -35,10 +35,10 @@
 <li>On the right side, near the bottom is a setting section entitled <code>GitHub Pages</code>: snder the <code>Source</code> section, click on the first button labeled <code>None</code> and choose <code>Master Branch</code> from the drop down. Then click the <code>Save</code> button to save this selection.</li>
 </ol>
 <p><img src="img/github-pages.png" alt="GitHub Pages screenshot" /></p>
-<p>After you save this change, the files in your repository become web addressable, meaning you can load them into a web browser using a URL that begins with the URL shown in the GitHub Pages settings box. This URL has the following pattern, where <code>name-of-account</code> is replaced with the name of the account in which the repo lives, and <code>name-of-repo</code> is replaced with the name of the repo.</p>
-<pre><code>https://name-of-account.github.io/name-of-repo/</code></pre>
+<p>After you save this change, the files in your repository become web addressable, meaning you can load them into a web browser using a URL that begins with the URL shown in the GitHub Pages settings box. This URL has the following pattern, where <code>account-name</code> is replaced with the name of the account in which the repo lives, and <code>repo-name</code> is replaced with the name of the repo.</p>
+<pre><code>https://account-name.github.io/repo-name/</code></pre>
 <p>If you have a file named <code>index.html</code> in the root of the repo, then this URL will return that file. If your <code>index.html</code> is in a sub-folder, just add the subfolder's name on the end of the URL. For example, to load an <code>index.html</code> from a subfolder named <code>myfolder</code>, the URL would be:</p>
-<pre><code>https://name-of-account.github.io/name-of-repo/myfolder/</code></pre>
+<pre><code>https://account-name.github.io/repo-name/myfolder</code></pre>
 <h2 id="sec-options">Options</h2>
 <p>Enabling GitHub Pages on the <code>master</code> branch is the easiest way to get your site published to the web, but there are a few other options in that drop-down.</p>
 <h3 id="sec-masterbranchdocsfolder">Master Branch <code>/docs</code> Folder</h3>
@@ -49,6 +49,7 @@
 <p>Publishing directly from the <code>master</code> branch is something new that was added to GitHub Pages in the summer of 2016. Prior to that, one had to create a new branch in the repo named exactly <code>gh-pages</code> and merge commits onto that branch in order to publish your site. Although it's not displayed in the options drop-down, this approach is still supported, and will probably be so for quite some time.</p>
 <p>This approach is more complex, as it requires working with branches, but it's also more powerful, because it enables you to work on your site and back it up to GitHub without automatically publishing those changes to the web. Because commits made to one branch are isolated from other branches until you merge them, you can make all the commits you want to the <code>master</code> branch, but they won't appear in the <code>gh-pages</code> branch until you merge them into it. When you are ready to publish your site, you simply switch to the <code>gh-pages</code> branch, merge all the commits from <code>master</code>, and synchronize with GitHub to make them available on the web.</p>
 <h2 id="sec-defaultaccountrepo">Default Account Repo</h2>
+<p>GitHub pages also allows each account to have one repo that becomes the account's default web site. If you name your repo <code>account-name.github.io</code>, replacing <code>account-name</code> with your GitHub user name, then you can access it using the shorter URL <code>https://account-name.github.io</code>. Since repo names must be unique within an account, and since the repo must be named exactly as shown, you can have only one of these repos per-account.</p>
         </article>
         <footer>
             <p>

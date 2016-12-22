@@ -10,16 +10,16 @@ By default, GitHub Pages is not enabled for new repos. To turn it on, follow the
 
 ![GitHub Pages screenshot](img/github-pages.png)
 
-After you save this change, the files in your repository become web addressable, meaning you can load them into a web browser using a URL that begins with the URL shown in the GitHub Pages settings box. This URL has the following pattern, where `name-of-account` is replaced with the name of the account in which the repo lives, and `name-of-repo` is replaced with the name of the repo.
+After you save this change, the files in your repository become web addressable, meaning you can load them into a web browser using a URL that begins with the URL shown in the GitHub Pages settings box. This URL has the following pattern, where `account-name` is replaced with the name of the account in which the repo lives, and `repo-name` is replaced with the name of the repo.
 
 ```
-https://name-of-account.github.io/name-of-repo/
+https://account-name.github.io/repo-name/
 ```
 
 If you have a file named `index.html` in the root of the repo, then this URL will return that file. If your `index.html` is in a sub-folder, just add the subfolder's name on the end of the URL. For example, to load an `index.html` from a subfolder named `myfolder`, the URL would be:
 
 ```
-https://name-of-account.github.io/name-of-repo/myfolder/
+https://account-name.github.io/repo-name/myfolder
 ```
 
 ## Options
@@ -42,3 +42,4 @@ This approach is more complex, as it requires working with branches, but it's al
 
 ## Default Account Repo
 
+GitHub pages also allows each account to have one repo that becomes the account's default web site. If you name your repo `account-name.github.io`, replacing `account-name` with your GitHub user name, then you can access it using the shorter URL `https://account-name.github.io`. Since repo names must be unique within an account, and since the repo must be named exactly as shown, you can have only one of these repos per-account.
