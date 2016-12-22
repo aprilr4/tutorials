@@ -19,12 +19,13 @@ By separating our data from the way they are presented, we achieve a number of b
 
 You can add CSS rules to your page in three different ways, but the best practice is to use a separate CSS stylesheet file, and link that to your HTML page. These stylesheet files are typically put into a `css/` subdirectory to keep them separate from all your HTML pages.
 
-For example, say you wanted to create one stylesheet for your `index.html` page that you created during the [Encoding in HTML Tutorial](../encoding-html/). Create a new directory named `css` next to your `index.html` file. Then create a new file in that new `css/` directory named `main.css`. The resulting file structure should be like this:
+For example, say you wanted to create one stylesheet for your `index.html` page that you created during the [Encoding in HTML Tutorial](../encoding-html/). Create a new directory named `css` next to your `index.html` file. Then create a new file in that new `css/` directory named `styles.css`. The resulting file structure should be like this:
 
 ```
-index.html
-    css/
-    |-- main.css
+myproject/
+|-- index.html
+|-- css/
+    |-- styles.css
 ```
 
 Now link this new stylesheet to your HTML file by adding the following element to the `<head>` section of your page:
@@ -32,7 +33,7 @@ Now link this new stylesheet to your HTML file by adding the following element t
 ```html
 <head>
     ...existing elements... 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 ```
 
@@ -230,6 +231,65 @@ Although the actual algorithm is pretty complex, you can think of it this way:
 
 This simple explanation is accurate in most cases, but there are a few cases where it isn't quite right. The CSS standard gives higher priority to some selectors over others, making the order in which they were defined irrelevant in some cases. The concept is known as [Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity), and you may run into cases where this becomes important. If you notice that one of your style rules is not being applied, despite your syntax being correct, check your browser's developer tools to see if your rule is being overridden by a more specific rule in an earlier stylesheet. Then adjust your rule so that it has the same or greater specificity.
 
+## Property Inheritance
+
+All CSS properties affect the styling of the elements directly selected by the rule, but [several properties](http://stackoverflow.com/questions/5612302/which-css-properties-are-inherited) also affect the styling of all descendant elements as well. For example, if I set the font family for the `<body>` element, all elements within the body section will use that font unless it is overriden by another rule. 
+
+We call these **inherited** properties, because the descendant elements inherit the setting from their ancestor element. This is a powerful mechanism that enables us to specify these properties only once for a given branch of the element tree. In general, try to set these properties on the highest-level element you can, and let the descendant elements inherit the setting from their ancestor.
+
+## Fonts
+
+Now that you understand the basic syntax and rules, we can now learn how to adjust various visual aspects of our elements, such as fonts, colors, and background images.
+
+By default, browsers will render text with elements using a font from the Times Roman family. This is a [serifed](https://www.fonts.com/content/learning/fontology/level-1/type-anatomy/serif-vs-sans-for-text-in-print) font, which looks good when printed on paper, but doesn't work as well for small text on screens. Most web sites these days use [sans-serifed](https://www.fonts.com/content/learning/fontology/level-1/type-anatomy/serif-vs-sans-for-text-in-responsive-design) fonts for body text, as it tends to be easier to read at smaller point sizes.
+
+To change the font, use the `font-family` property:
+
+```css
+/* font-family is inhered, so setting it on body sets it for the whole page */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+```
+
+The value for `font-family` can be a comma-delimited list of font names. If the font name has a space in it, you must wrap the name in quotes, but quotes are optional if the name doesn't contain a space. The browser will attempt to use the first font in the list, but fall back to using those later in the last if the requested font can't be found on the system. At the very end of the list is `sans-serif`, which is a CSS-specific keyword meaning "the default sans-serif font on the system, whatever that happens to be."
+
+Relying on particular font names that may or may not be installed on the system is, of course, not ideal. Thankfully browsers support the ability to dynamically download particular font files and use those when rendering your web page.
+
+The easiest way to use custom fonts is to use one from the [Google Fonts](https://fonts.google.com/) collection. Select the fonts you want to use, and Google Fonts will generate the appropriate `<link>` element for your HTML page.
+
+For example, say you want to use the popular font [Lato](https://fonts.google.com/specimen/Lato) for your body text. Choose the `Select this font` link on the page, and then click the dark bar at the bottom where it says `1 Family Selected`. In the popup window, you'll see this `<link>` element, which you should copy and paste into the `<head>` section of your HTML page:
+
+```html
+<head>
+    ...
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+```
+
+The popup window also shows you how to reference this font in the `font-family` CSS property. Note that it's a good idea to provide a few fallback fonts, just in case the browser is unable to get the font from Google's font servers.
+
+```css
+body {
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+```
+
+By default, the generated `<link>` element will only download the regular weight and normal typeface for the given font. If you want the italic typeface or different weights (e.g., bold, thin, etc), you need to click on the Customize tab in the popup window, and choose the various weights and typefaces you need. You can also choose additional languages if the font supports them, which will include the glyphs for that language as well as the basic Latin glyphs.
+
+For example, if I add the regular weight italic and the bold weight (700), the `href` attribute in the generated `<link>` element will change to this:
+
+```html
+<head>
+    ...
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
+</head>
+```
+
+Note the extra weight options at the end of the URL.
+
+Each weight and typeface increases the size of the font file that must be downloaded from Google's font servers, which increases the download time, so choose only the ones you really need for the page.
+
 ## Colors
 
 In the examples above, I used color names like `red` and `yellow`. Although these are supported in CSS, most professional developers don't use them because they don't capture the full range of available colors. Instead, we use a hexadecimal representation of a numeric color value, like `#FF0000`, which is pure red.
@@ -270,6 +330,41 @@ p {
 The `rgba()` function is like the `rgb()` function, but it adds one more parameter to control what is known as the **alpha channel**. This value specifies how opaque the color is. It is expressed as a decimal value between `0` (fully transparent) to `1` (fully opaque). A value of `0.5` is half-transparent.
 
 To experiment with CSS color values and build color palettes, check out the amazing [Adobe Color CC tool](https://color.adobe.com). You can [explore](https://color.adobe.com/explore/newest/) ready-made color palettes, or design your own. You can also upload a photo and let the tool design a color palette for you based on the colors in the photo (click the camera icon on the top-right).
+
+## Background Images
+
+You can set both the foreground and background color of an element, but it's often a cool effect to use an image as the background instead of a solid color. CSS supports this via the `background-image` property:
+
+```css
+header {
+    background-image: url(path/to/image/file.jpg);
+}
+```
+
+The value for this property should be an absolute or relative path to an image file, wrapped in `url(...)`. Typically this will be a relative path to an image file in your project, and the path should tell the browser how to get from this CSS file to the image. For example, say your CSS file was in a `css` sub-folder, and the image was in another sub-folder named `img` at the same level, like so:
+
+```
+myproject/
+|-- index.html
+|-- css/
+|   |-- styles.css
+|-- img/
+    |-- header-background.jpg
+```
+
+The path to get from `css/styles.css` to `img/header-background.jpg` would be `../img/header-background.jpg`. The `..` sequence in a path is a special syntax that means "the parent folder," so this path will go up to the `css` folder's parent folder (the project root folder), then down into the `img` folder, and finally select the `header-background.jpg` file.
+
+By default, background images will start in the upper-left corner of the element, and repeat if the element is larger than the background image. But we can alter this behavior with the other `background-*` CSS properties. For example, to make the image cover the entire background of the element, regardless of how big or small the element happens to be, use this combination of properties:
+
+```css
+header {
+    background-image: url(../img/header-background.jpg);
+    background-size: cover;
+    background-position: center;
+}
+```
+
+For more details, see the CSS reference pages on [background-image](http://www.w3schools.com/cssref/pr_background-image.asp), [background-size](http://www.w3schools.com/cssref/css3_pr_background-size.asp), and [background-position](http://www.w3schools.com/cssref/pr_background-position.asp).
 
 ## Measurement Units
 

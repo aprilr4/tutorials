@@ -39,14 +39,15 @@
 </ul>
 <h2 id="sec-addingastylesheettoyourpage">Adding a Stylesheet to your Page</h2>
 <p>You can add CSS rules to your page in three different ways, but the best practice is to use a separate CSS stylesheet file, and link that to your HTML page. These stylesheet files are typically put into a <code>css/</code> subdirectory to keep them separate from all your HTML pages.</p>
-<p>For example, say you wanted to create one stylesheet for your <code>index.html</code> page that you created during the <a href="../encoding-html/">Encoding in HTML Tutorial</a>. Create a new directory named <code>css</code> next to your <code>index.html</code> file. Then create a new file in that new <code>css/</code> directory named <code>main.css</code>. The resulting file structure should be like this:</p>
-<pre><code>index.html
-    css/
-    |-- main.css</code></pre>
+<p>For example, say you wanted to create one stylesheet for your <code>index.html</code> page that you created during the <a href="../encoding-html/">Encoding in HTML Tutorial</a>. Create a new directory named <code>css</code> next to your <code>index.html</code> file. Then create a new file in that new <code>css/</code> directory named <code>styles.css</code>. The resulting file structure should be like this:</p>
+<pre><code>myproject/
+|-- index.html
+|-- css/
+    |-- styles.css</code></pre>
 <p>Now link this new stylesheet to your HTML file by adding the following element to the <code>&lt;head&gt;</code> section of your page:</p>
 <pre><code class="html language-html">&lt;head&gt;
     ...existing elements... 
-    &lt;link rel="stylesheet" href="css/main.css"&gt;
+    &lt;link rel="stylesheet" href="css/styles.css"&gt;
 &lt;/head&gt;</code></pre>
 <p>The name you use for your CSS file can be anything you want. It just needs to match what you put in the <code>href</code> attribute of the <code>&lt;link&gt;</code> element.</p>
 <h2 id="sec-basicsyntax">Basic Syntax</h2>
@@ -166,6 +167,37 @@ input:focus {
 <li>If a later rule selects the same element and provides a different setting for a property already set by an earlier rule, the later rule's setting overrides.</li>
 </ol>
 <p>This simple explanation is accurate in most cases, but there are a few cases where it isn't quite right. The CSS standard gives higher priority to some selectors over others, making the order in which they were defined irrelevant in some cases. The concept is known as <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">Selector Specificity</a>, and you may run into cases where this becomes important. If you notice that one of your style rules is not being applied, despite your syntax being correct, check your browser's developer tools to see if your rule is being overridden by a more specific rule in an earlier stylesheet. Then adjust your rule so that it has the same or greater specificity.</p>
+<h2 id="sec-propertyinheritance">Property Inheritance</h2>
+<p>All CSS properties affect the styling of the elements directly selected by the rule, but <a href="http://stackoverflow.com/questions/5612302/which-css-properties-are-inherited">several properties</a> also affect the styling of all descendant elements as well. For example, if I set the font family for the <code>&lt;body&gt;</code> element, all elements within the body section will use that font unless it is overriden by another rule. </p>
+<p>We call these <strong>inherited</strong> properties, because the descendant elements inherit the setting from their ancestor element. This is a powerful mechanism that enables us to specify these properties only once for a given branch of the element tree. In general, try to set these properties on the highest-level element you can, and let the descendant elements inherit the setting from their ancestor.</p>
+<h2 id="sec-fonts">Fonts</h2>
+<p>Now that you understand the basic syntax and rules, we can now learn how to adjust various visual aspects of our elements, such as fonts, colors, and background images.</p>
+<p>By default, browsers will render text with elements using a font from the Times Roman family. This is a <a href="https://www.fonts.com/content/learning/fontology/level-1/type-anatomy/serif-vs-sans-for-text-in-print">serifed</a> font, which looks good when printed on paper, but doesn't work as well for small text on screens. Most web sites these days use <a href="https://www.fonts.com/content/learning/fontology/level-1/type-anatomy/serif-vs-sans-for-text-in-responsive-design">sans-serifed</a> fonts for body text, as it tends to be easier to read at smaller point sizes.</p>
+<p>To change the font, use the <code>font-family</code> property:</p>
+<pre><code class="css language-css">/* font-family is inhered, so setting it on body sets it for the whole page */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}</code></pre>
+<p>The value for <code>font-family</code> can be a comma-delimited list of font names. If the font name has a space in it, you must wrap the name in quotes, but quotes are optional if the name doesn't contain a space. The browser will attempt to use the first font in the list, but fall back to using those later in the last if the requested font can't be found on the system. At the very end of the list is <code>sans-serif</code>, which is a CSS-specific keyword meaning "the default sans-serif font on the system, whatever that happens to be."</p>
+<p>Relying on particular font names that may or may not be installed on the system is, of course, not ideal. Thankfully browsers support the ability to dynamically download particular font files and use those when rendering your web page.</p>
+<p>The easiest way to use custom fonts is to use one from the <a href="https://fonts.google.com/">Google Fonts</a> collection. Select the fonts you want to use, and Google Fonts will generate the appropriate <code>&lt;link&gt;</code> element for your HTML page.</p>
+<p>For example, say you want to use the popular font <a href="https://fonts.google.com/specimen/Lato">Lato</a> for your body text. Choose the <code>Select this font</code> link on the page, and then click the dark bar at the bottom where it says <code>1 Family Selected</code>. In the popup window, you'll see this <code>&lt;link&gt;</code> element, which you should copy and paste into the <code>&lt;head&gt;</code> section of your HTML page:</p>
+<pre><code class="html language-html">&lt;head&gt;
+    ...
+    &lt;link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"&gt;
+&lt;/head&gt;</code></pre>
+<p>The popup window also shows you how to reference this font in the <code>font-family</code> CSS property. Note that it's a good idea to provide a few fallback fonts, just in case the browser is unable to get the font from Google's font servers.</p>
+<pre><code class="css language-css">body {
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}</code></pre>
+<p>By default, the generated <code>&lt;link&gt;</code> element will only download the regular weight and normal typeface for the given font. If you want the italic typeface or different weights (e.g., bold, thin, etc), you need to click on the Customize tab in the popup window, and choose the various weights and typefaces you need. You can also choose additional languages if the font supports them, which will include the glyphs for that language as well as the basic Latin glyphs.</p>
+<p>For example, if I add the regular weight italic and the bold weight (700), the <code>href</code> attribute in the generated <code>&lt;link&gt;</code> element will change to this:</p>
+<pre><code class="html language-html">&lt;head&gt;
+    ...
+    &lt;link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet"&gt;
+&lt;/head&gt;</code></pre>
+<p>Note the extra weight options at the end of the URL.</p>
+<p>Each weight and typeface increases the size of the font file that must be downloaded from Google's font servers, which increases the download time, so choose only the ones you really need for the page.</p>
 <h2 id="sec-colors">Colors</h2>
 <p>In the examples above, I used color names like <code>red</code> and <code>yellow</code>. Although these are supported in CSS, most professional developers don't use them because they don't capture the full range of available colors. Instead, we use a hexadecimal representation of a numeric color value, like <code>#FF0000</code>, which is pure red.</p>
 <p>On a computer screen, every representable color is a combination of red, green, and blue light. The amount of each color is expressed as a number between 0 (no color) and 255 (full color). Every color is thus defined by three numbers, each of which is somewhere between 0 and 255. Black (the absence of all color) is <code>0,0,0</code> and white (all colors at maximum) is <code>255,255,255</code>. Pure red would be <code>255,0,0</code>, pure green would be <code>0,255,0</code>, and pure blue would be <code>0,0,255</code>. The order is always <code>red,green,blue</code> (RGB).</p>
@@ -188,6 +220,26 @@ input:focus {
 }</code></pre>
 <p>The <code>rgba()</code> function is like the <code>rgb()</code> function, but it adds one more parameter to control what is known as the <strong>alpha channel</strong>. This value specifies how opaque the color is. It is expressed as a decimal value between <code>0</code> (fully transparent) to <code>1</code> (fully opaque). A value of <code>0.5</code> is half-transparent.</p>
 <p>To experiment with CSS color values and build color palettes, check out the amazing <a href="https://color.adobe.com">Adobe Color CC tool</a>. You can <a href="https://color.adobe.com/explore/newest/">explore</a> ready-made color palettes, or design your own. You can also upload a photo and let the tool design a color palette for you based on the colors in the photo (click the camera icon on the top-right).</p>
+<h2 id="sec-backgroundimages">Background Images</h2>
+<p>You can set both the foreground and background color of an element, but it's often a cool effect to use an image as the background instead of a solid color. CSS supports this via the <code>background-image</code> property:</p>
+<pre><code class="css language-css">header {
+    background-image: url(path/to/image/file.jpg);
+}</code></pre>
+<p>The value for this property should be an absolute or relative path to an image file, wrapped in <code>url(...)</code>. Typically this will be a relative path to an image file in your project, and the path should tell the browser how to get from this CSS file to the image. For example, say your CSS file was in a <code>css</code> sub-folder, and the image was in another sub-folder named <code>img</code> at the same level, like so:</p>
+<pre><code>myproject/
+|-- index.html
+|-- css/
+|   |-- styles.css
+|-- img/
+    |-- header-background.jpg</code></pre>
+<p>The path to get from <code>css/styles.css</code> to <code>img/header-background.jpg</code> would be <code>../img/header-background.jpg</code>. The <code>..</code> sequence in a path is a special syntax that means "the parent folder," so this path will go up to the <code>css</code> folder's parent folder (the project root folder), then down into the <code>img</code> folder, and finally select the <code>header-background.jpg</code> file.</p>
+<p>By default, background images will start in the upper-left corner of the element, and repeat if the element is larger than the background image. But we can alter this behavior with the other <code>background-*</code> CSS properties. For example, to make the image cover the entire background of the element, regardless of how big or small the element happens to be, use this combination of properties:</p>
+<pre><code class="css language-css">header {
+    background-image: url(../img/header-background.jpg);
+    background-size: cover;
+    background-position: center;
+}</code></pre>
+<p>For more details, see the CSS reference pages on <a href="http://www.w3schools.com/cssref/pr_background-image.asp">background-image</a>, <a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp">background-size</a>, and <a href="http://www.w3schools.com/cssref/pr_background-position.asp">background-position</a>.</p>
 <h2 id="sec-measurementunits">Measurement Units</h2>
 <p>Before we discuss the other core concepts, we need to take a slight digression into CSS units. Many CSS properties that affect the size of things can be specified in <a href="http://www.w3schools.com/cssref/css_units.asp">one or more units</a>. CSS supports several absolute units, as well as several relative units.</p>
 <p>The absolute units are as follows:</p>
