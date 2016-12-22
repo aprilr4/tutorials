@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Publishing with GitHub Pages</title>
+    <link rel="icon" href="../img/favicon.png">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <script defer src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../lib/prism.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="../lib/prism.js"></script> 
+</head>
+<body>
+    <header class="github-pages-header">
+        <div class="container">
+            <h1>Publishing with GitHub Pages</h1>
+            <p class="subtitle">How to publish your web site using GitHub Pages</p>
+        </div>
+    </header>
+    <div class="container">
+        <article>
+            <p>Keeping a master copy of your repo on GitHub is a great way to keep everything backed up, as well as enable team development. But GitHub can also help you publish the contents of that repo to the web so that everyone can see it in their web browser. This feature is known as <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<h2 id="sec-enablinggithubpages">Enabling GitHub Pages</h2>
+<p>By default, GitHub Pages is not enabled for new repos. To turn it on, follow these simple steps:</p>
+<ol>
+<li>Go to your repo's page on the GitHub web site</li>
+<li>Choose the <code>Settings</code> tab</li>
+<li>On the right side, near the bottom is a setting section entitled <code>GitHub Pages</code>: snder the <code>Source</code> section, click on the first button labeled <code>None</code> and choose <code>Master Branch</code> from the drop down. Then click the <code>Save</code> button to save this selection.</li>
+</ol>
+<p><img src="img/github-pages.png" alt="GitHub Pages screenshot" /></p>
+<p>After you save this change, the files in your repository become web addressable, meaning you can load them into a web browser using a URL that begins with the URL shown in the GitHub Pages settings box. This URL has the following pattern, where <code>name-of-account</code> is replaced with the name of the account in which the repo lives, and <code>name-of-repo</code> is replaced with the name of the repo.</p>
+<pre><code>https://name-of-account.github.io/name-of-repo/</code></pre>
+<p>If you have a file named <code>index.html</code> in the root of the repo, then this URL will return that file. If your <code>index.html</code> is in a sub-folder, just add the subfolder's name on the end of the URL. For example, to load an <code>index.html</code> from a subfolder named <code>myfolder</code>, the URL would be:</p>
+<pre><code>https://name-of-account.github.io/name-of-repo/myfolder/</code></pre>
+<h2 id="sec-options">Options</h2>
+<p>Enabling GitHub Pages on the <code>master</code> branch is the easiest way to get your site published to the web, but there are a few other options in that drop-down.</p>
+<h3 id="sec-masterbranchdocsfolder">Master Branch <code>/docs</code> Folder</h3>
+<p>This enables GitHub pages only for files in a folder named <code>docs</code> within your repo. All other files outside of that folder are not web addressable. This is for code libraries that want to host their documentation on a GitHub Pages site, but keep the code itself just in the repo.</p>
+<p>This approach can also be used for sites where the published content is actually built from templates and document fragments that live in a separate folder. <a href="https://github.com/infx-web-win17/tutorials">This tutorials site</a> is an example. Each tutorial is just a document fragment that is merged with a template to create the final published tutorial. My tutorial fragments and meta-data live in a <code>src</code> folder, and my scripts build the published site into the <code>docs</code> folder.</p>
+<h3 id="sec-theghpagesbranch">The <code>gh-pages</code> branch</h3>
+<p>If you read the section on branching and merging in the <a href="../managing-files#sec-branchingandmerging">Managing Your Files</a> tutorial, and feel comfortable working with branches, there is another option available to you.</p>
+<p>Publishing directly from the <code>master</code> branch is something new that was added to GitHub Pages in the summer of 2016. Prior to that, one had to create a new branch in the repo named exactly <code>gh-pages</code> and merge commits onto that branch in order to publish your site. Although it's not displayed in the options drop-down, this approach is still supported, and will probably be so for quite some time.</p>
+<p>This approach is more complex, as it requires working with branches, but it's also more powerful, because it enables you to work on your site and back it up to GitHub without automatically publishing those changes to the web. Because commits made to one branch are isolated from other branches until you merge them, you can make all the commits you want to the <code>master</code> branch, but they won't appear in the <code>gh-pages</code> branch until you merge them into it. When you are ready to publish your site, you simply switch to the <code>gh-pages</code> branch, merge all the commits from <code>master</code>, and synchronize with GitHub to make them available on the web.</p>
+<h2 id="sec-defaultaccountrepo">Default Account Repo</h2>
+        </article>
+        <footer>
+            <p>
+                <small>
+                    <a href="..">table of contents</a>
+                </small>
+            </p>
+            <p>
+                <small>
+                    &copy; 2017, 
+                    <a href="https://ischool.uw.edu/people/faculty/dlsinfo">Dave Stearns</a>, 
+                    <a href="https://ischool.uw.edu/">The Information School</a>, 
+                    <a href="http://www.washington.edu/">University of Washington</a>
+                </small>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.github-pages-header {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../img/ghpages-header-sm.jpg); 
+}
+
+@media (min-width: 768px) {
+    .github-pages-header {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../img/ghpages-header.jpg); 
+    }
+}
