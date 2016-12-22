@@ -1,0 +1,9 @@
+.adding-style-header {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%), url(../img/adding-style-header-sm.jpg);
+}
+
+@media (min-width: 768px) {
+    .adding-style-header {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%), url(../img/adding-style-header.jpg);
+    }
+}
