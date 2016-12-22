@@ -8,7 +8,7 @@ If you are new to web programming, you might be wondering why there are two diff
 
 There is an old, tried-and-true principle of programming that is known as the **[separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)**. Good software keeps separate things separate and loosely-coupled so that it's easy to change one without breaking the other. One typical separation that you will see in nearly every information system is the separation between data and the way those data are presented on-screen.
 
-By separating our data from the way it's presented, we achieve a number of benefits:
+By separating our data from the way they are presented, we achieve a number of benefits:
 
 - Several HTML pages can all share the same CSS file, allowing us to change the look of our entire site by editing only one file.
 - The same HTML can be presented to different users in different ways. For example, you could allow users to "skin" the site in one of several different themes, or you could use different default formatting for different regions of the world with different aesthetic sensibilities
@@ -19,7 +19,7 @@ By separating our data from the way it's presented, we achieve a number of benef
 
 You can add CSS rules to your page in three different ways, but the best practice is to use a separate CSS stylesheet file, and link that to your HTML page. These stylesheet files are typically put into a `css/` subdirectory to keep them separate from all your HTML pages.
 
-For example, say you wanted to create one stylesheet for your `index.html` page that you created during the [Essential HTML tutorial](../essential-html/). Create a new directory named `css` next to your `index.html` file. Then create a new file in that new `css/` directory named `main.css`. The resulting file structure should be like this:
+For example, say you wanted to create one stylesheet for your `index.html` page that you created during the [Encoding in HTML Tutorial](../encoding-html/). Create a new directory named `css` next to your `index.html` file. Then create a new file in that new `css/` directory named `main.css`. The resulting file structure should be like this:
 
 ```
 index.html
@@ -43,6 +43,7 @@ The name you use for your CSS file can be anything you want. It just needs to ma
 A CSS stylesheet follows this basic syntax:
 
 ```css
+/* this is a comment */
 selector {
     property: value;
     property: value;
@@ -55,13 +56,15 @@ selector {
 
 ```
 
-A stylesheet is a series of **rules**. A rule starts with a **selector**, which specifies which elements the rule applies to. The selector is followed by a pair of braces, inside of which is a set of formatting properties, which are name and value pairs. The property name is separated from the property value by a colon, and each property/value pair must end with a semi-colon. If you forget the semi-colon, the browser will likely ignore the property setting, so don't forget it!
+A stylesheet is a series of **rules**. A rule starts with a **selector**, which specifies which elements the rule applies to. The selector is followed by a pair of braces, inside of which is a set of formatting properties. Each formatting property consists of a name and a value. The property name is separated from the property value by a colon, and each property/value pair must end with a semi-colon. Don't forget the semi-colon! If you do, the browser will likely ignore that formatting property.
 
 Like most programming languages, multiple whitespace characters are coalesced into one, so the layout of the rule can vary. For example, you can start the braces on the line below the selector, or you can put everything all on one line if you want. But most developers will use the style shown above, as it's easy to read and maintain. For large CSS files, professionals will typically **minify** them before deploying them to a production server, which involves removing all the whitespace to make the file smaller.
 
+You can add comments to your stylesheets by wrapping them with `/*` and `*/`. Comments are ignored by the browser, but can be very helpful for explaining things to other developers (or for reminding yourself about why you did something in a particular way).
+
 ## Selectors
 
-There are [many kinds of selectors](http://www.w3schools.com/cssref/css_selectors.asp) supported in CSS, but you will typically use only a handful in most situations.
+There are [many kinds of selectors](http://www.w3schools.com/cssref/css_selectors.asp) supported in CSS, but you will use only a handful in most situations.
 
 ### Element Selectors
 
@@ -93,13 +96,32 @@ After you add a class attribute to an element, you can then refer to that class 
 .alert-warning {
     ...
 }
+
+/* selects all elements with class="alert alert-warning" 
+(i.e., elements that have both classes) */
+.alert.alert-warning {
+    ...
+}
 ```
 
 Note the `.` character at the start of the name. That tells the browser that what follows is a class name and not an element name. But remember that the `.` character is used only in the CSS rule; in your HTML `class` attribute, you use the class name without the preceding `.` character.
 
-Multiple elements within your page can all share common class names, so you can define style classes for common UI components that you use in several places. Define a rule in your CSS using a class selector and the formatting properties you want, and then add that class name to the `class` attribute on any HTML element in your page that should be styled using those formatting properties.
-
 CSS rules are also additive. If you attach multiple style classes to the same element (like we did above), the browser will combine all formatting properties from all style rules in the order that they are defined. So in the case above, because the paragraph has both the `alert` and `alert-warning` style classes, the browser will combine all formatting properties from the `.alert` and `.alert-warning` rules and apply all of them to the element. If the same property is defined in both rules, the later one will override the earlier one.
+
+Multiple elements within your page can all share common class names, so you can define style classes for common UI components that you use in several places. For example, say you are writing a tutorial and you want to style all new terms you introduce in a particular way. You could define a rule in your stylesheet with the selector `.term`, setting various formatting properties you want to apply to new terms (e.g., bold, yellow background color, etc). 
+
+```css
+.term {
+    font-weight: bold;
+    background-color: yellow;
+}
+```
+When you introduce a new term in your HTML page, simply add the `term` style class to an element that wraps around the term:
+
+```html
+<p>A stylesheet is a series of <span class="term">rules</span>. 
+A rule starts with a <span class="term">selector</span>, ...</p>
+```
 
 ### ID Selectors
 
@@ -123,7 +145,7 @@ All the selectors mentioned so far will select all matching elements regardless 
 For example, say you wanted to style all paragraphs within the `<header>` element, but not the other paragraph elements that exist elsewhere in the page. You can select just those paragraph elements using a selector like this:
 
 ```css
-/* selects only the p elements contained withing header elements */
+/* selects only the p elements contained within header elements */
 header p {
     ...
 }
@@ -140,7 +162,7 @@ header p .logo {
 }
 ```
 
-Note that descendant selectors will select matching descendant elements  anywhere lower in the tree branch, not just direct children, so the `.logo` elements here could be nested several layers below the `<p>` element. This is usually a good idea because you may introduce new nesting layers to your page as you go along. But if you really want to select only direct children, you can use this variant of the syntax, known as a *child selector*:
+Note that descendant selectors will select matching descendant elements  anywhere lower in the tree branch, not just direct children, so the `.logo` elements here could be nested several layers below the `<p>` element. This is usually a good idea because you may introduce new nesting layers to your page as you go along. But if you really want to select only direct children, you can use this variant of the syntax, known as a **child selector**:
 
 ```css
 /* selects only the p elements that are direct children the header element  */
@@ -171,19 +193,19 @@ The last types of selectors that you will use quite often are the hover and focu
 ```css
 /* selects all elements with class="nav-link" */
 .nav-link {
-    #color: #FFFFFF;
+    color: white;
 }
 
 /* selects all elements with class="nav-link" that are being hovered over with the mouse */
 .nav-link:hover {
     /* change color to red */
-    color: #FF0000;
+    color: red;
 }
 
 /* selects all <input> elements that have keyboard focus */
 input:focus {
     /* change background color to yellow */
-    background-color: #FFFF00;
+    background-color: yellow;
 }
 ```
 
@@ -210,7 +232,7 @@ This simple explanation is accurate in most cases, but there are a few cases whe
 
 ## Colors
 
-In the examples above, you may have noticed several color values like `#FF0000`. This is the color red expressed in hexadecimal, which is one way we can express colors in CSS.
+In the examples above, I used color names like `red` and `yellow`. Although these are supported in CSS, most professional developers don't use them because they don't capture the full range of available colors. Instead, we use a hexadecimal representation of a numeric color value, like `#FF0000`, which is pure red.
 
 On a computer screen, every representable color is a combination of red, green, and blue light. The amount of each color is expressed as a number between 0 (no color) and 255 (full color). Every color is thus defined by three numbers, each of which is somewhere between 0 and 255. Black (the absence of all color) is `0,0,0` and white (all colors at maximum) is `255,255,255`. Pure red would be `255,0,0`, pure green would be `0,255,0`, and pure blue would be `0,0,255`. The order is always `red,green,blue` (RGB).
 
@@ -247,6 +269,8 @@ p {
 
 The `rgba()` function is like the `rgb()` function, but it adds one more parameter to control what is known as the **alpha channel**. This value specifies how opaque the color is. It is expressed as a decimal value between `0` (fully transparent) to `1` (fully opaque). A value of `0.5` is half-transparent.
 
+To experiment with CSS color values and build color palettes, check out the amazing [Adobe Color CC tool](https://color.adobe.com). You can [explore](https://color.adobe.com/explore/newest/) ready-made color palettes, or design your own. You can also upload a photo and let the tool design a color palette for you based on the colors in the photo (click the camera icon on the top-right).
+
 ## Measurement Units
 
 Before we discuss the other core concepts, we need to take a slight digression into CSS units. Many CSS properties that affect the size of things can be specified in [one or more units](http://www.w3schools.com/cssref/css_units.asp). CSS supports several absolute units, as well as several relative units.
@@ -258,8 +282,8 @@ Unit | Meaning
 cm | centimeters
 mm | millimeters
 in | inches
-px | pixels, which are defined as 1/96 of an inch, regardless of how dense the pixels are on the current display
-pt | points, which are defined as 1/72 of an inch
+px | pixels, which are defined as <sup>1</sup>&frasl;<sub>96</sub> of an inch, regardless of how dense the pixels are on the current display
+pt | points, which are defined as <sup>1</sup>&frasl;<sub>72</sub> of an inch
 
 
 In addition to these absolute units, you can also use these relative units:
@@ -278,15 +302,15 @@ Absolute units are best for things you want to be consistent across devices (e.g
 
 The next core CSS concept you should understand is the **box model**. Every HTML element defines a box on the page. By default, the dimensions of the box are just large enough to contain the content inside the element, but we can alter these dimensions in several ways. We can also layout and position the box in any way we want to.
 
-Each box can have a margin, border, and padding. Margins push elements away from the other elements that are next to them, letting the background color of the <em>containing</em> element shine through the gap. Padding adds space between the element's border and its content, letting the background color of the element shine through the gap. By default, elements don't have any visible borders, but you can make them visible by setting their [color](http://www.w3schools.com/cssref/pr_border-color.asp), [width](http://www.w3schools.com/cssref/pr_border-width.asp), and [style](http://www.w3schools.com/cssref/pr_border-style.asp) (solid, dashed, dotted, etc.) properties.
+Each box can have a margin, border, and padding. Margins push elements away from the other elements that are next to them, letting the background color of the <em>containing</em> element shine through the gap. Padding adds space between the element's border and its content, letting the background color of the element shine through the gap. By default, elements don't have any visible borders, but you can make them visible by setting their [border-color](http://www.w3schools.com/cssref/pr_border-color.asp), [border-width](http://www.w3schools.com/cssref/pr_border-width.asp), and [border-style](http://www.w3schools.com/cssref/pr_border-style.asp) (solid, dashed, dotted, etc.) properties.
 
 ![margins diagram](img/margins.png)
 
 ![padding diagram](img/padding.png)
 
-Browsers will typically overlap margins of similar elements. For example, if you have two paragraphs on top of one another, and you set margin-bottom on the first and margin-top on the second, most browsers will overlap those margins and just use the larger of the two. But if the elements are different, it will typically add the margins together, creating a rather large gap.
+Browsers will typically overlap margins of similar elements. For example, if you have two paragraphs on top of one another, and you set margin-bottom on the first and margin-top on the second, most browsers will overlap those margins and just use the larger of the two. But if the elements are different, it will typically add the margins together, creating a gap equal to the sum of the two margin values.
 
-You can also set the `width` and `height` of elements explicitly, though be careful when you do this. If your width and height are too small, the element's content will be clipped by default (this behavior is controlled by the `overflow` property). It's generally best to set only the width <em>or</em> the height, but not both. You can also specify a `min-width` or `min-height` to ensure that the width or height is <em>at least</em> a particular size. Conversely, you can use `max-width` and `max-height` to ensure that the element is <em>at most</em> a particular size.
+You can also set the `width` and `height` of elements explicitly, though be careful when you do this. If your width and height are too small, the element's content will be clipped by default (this behavior is controlled by the `overflow` property). It's generally best to set only the width *or* the height, but not both. You can also specify a `min-width` or `min-height` to ensure that the width or height is *at least* a particular size. Conversely, you can use `max-width` and `max-height` to ensure that the element is *at most* a particular size.
 
 ## Conclusion
 
