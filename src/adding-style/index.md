@@ -368,7 +368,7 @@ For more details, see the CSS reference pages on [background-image](http://www.w
 
 ## Measurement Units
 
-Before we discuss the other core concepts, we need to take a slight digression into CSS units. Many CSS properties that affect the size of things can be specified in [one or more units](http://www.w3schools.com/cssref/css_units.asp). CSS supports several absolute units, as well as several relative units.
+Before we discuss the last core concept, we need to take a slight digression into CSS units. Many CSS properties that affect the size of things can be specified in [one or more units](http://www.w3schools.com/cssref/css_units.asp). CSS supports several absolute units, as well as several relative units.
 
 The absolute units are as follows:
 
@@ -395,17 +395,53 @@ Absolute units are best for things you want to be consistent across devices (e.g
 
 ## The Box Model
 
-The next core CSS concept you should understand is the **box model**. Every HTML element defines a box on the page. By default, the dimensions of the box are just large enough to contain the content inside the element, but we can alter these dimensions in several ways. We can also layout and position the box in any way we want to.
+These measurement units are used primarily to adjust the size and layout of elements on the page. Every HTML element in your document creates a box on the page, inside of which the browser displays the element's content. The default widths and heights of these boxes are determined by their content and a few simple rules, but you can adjust these dimensions using various CSS properties.
 
-Each box can have a margin, border, and padding. Margins push elements away from the other elements that are next to them, letting the background color of the <em>containing</em> element shine through the gap. Padding adds space between the element's border and its content, letting the background color of the element shine through the gap. By default, elements don't have any visible borders, but you can make them visible by setting their [border-color](http://www.w3schools.com/cssref/pr_border-color.asp), [border-width](http://www.w3schools.com/cssref/pr_border-width.asp), and [border-style](http://www.w3schools.com/cssref/pr_border-style.asp) (solid, dashed, dotted, etc.) properties.
+### Block vs Inline Display
+
+Most HTML elements will be displayed as a **block** by default. Block elements create a line break before and after, they stretch to be as wide as their parent element, and they stretch to be as high as they need to be to show their content without clipping or internal scroll bars. Elements that are displayed as blocks by default include `p`, `div`, `ul`, `ol`, `li`, `header`, `main`, `article`, `footer`, `aside`, and many more. For example:
+
+<blockquote><p class="shaded">This is a block element: it creates a line break before and after, stretches as wide as its parent element, as stretches as high as it needs in order to show its content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam labore non, distinctio dolorum ducimus ad cum quo voluptatum facere, quas alias ex modi quidem, et in, suscipit debitis quaerat recusandae.</p></blockquote>
+
+Other HTML elements will be displayed as **inline** by default. Inline elements do not cause a line break before or after, and they stretch only as wide and high as they need to be to display their content. Elements that are displayed inline by default include `em`, `strong`, `span`, `a`, `small`, `abbr`, and several more. For example:
+
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="shaded">This is an inline element.</span> Quod nesciunt ratione facilis blanditiis, molestiae iste dignissimos totam quasi quis ipsum temporibus, alias minus mollitia odit sunt, quisquam impedit eius unde!</p></blockquote>
+
+### Adjusting Width and Height
+
+You can adjust the default width and height of block elements using the `width` and `height` CSS properties, but you need to careful when doing so. If your element contains content, you should adjust only the `width` and never the `height`. If you constraint the `width` and the `height`, the element might not have enough room to display all of its content. But if you constrain only the `width`, the element will automatically grow taller to accommodate its content.
+
+Alternatively you can specify a `min-width` or `max-width` CSS property to ensure that the width is *at least* or *at most* a particular size. For example, setting `max-width` to `1170px` will allow the element to grow in width up to, but not beyond, `1170px`.
+
+### Margins, Borders, and Padding
+
+Elements displayed as blocks can also have a margin, border, and padding. Margins push elements away from the other elements that are next to them, letting the background color of the *parent* element shine through the gap. 
 
 ![margins diagram](img/margins.png)
 
-![padding diagram](img/padding.png)
-
 Browsers will typically overlap margins of similar elements. For example, if you have two paragraphs on top of one another, and you set margin-bottom on the first and margin-top on the second, most browsers will overlap those margins and just use the larger of the two. But if the elements are different, it will typically add the margins together, creating a gap equal to the sum of the two margin values.
 
-You can also set the `width` and `height` of elements explicitly, though be careful when you do this. If your width and height are too small, the element's content will be clipped by default (this behavior is controlled by the `overflow` property). It's generally best to set only the width *or* the height, but not both. You can also specify a `min-width` or `min-height` to ensure that the width or height is *at least* a particular size. Conversely, you can use `max-width` and `max-height` to ensure that the element is *at most* a particular size.
+Padding, on the other hand, adds space between the element's border and its content, letting the background color of the *current* element shine through the gap.
+
+![padding diagram](img/padding.png)
+
+By default, elements don't have any visible borders, but you can make them visible by setting their [border-color](http://www.w3schools.com/cssref/pr_border-color.asp), [border-width](http://www.w3schools.com/cssref/pr_border-width.asp), and [border-style](http://www.w3schools.com/cssref/pr_border-style.asp) (solid, dashed, dotted, etc.) properties.
+
+### Horizontally Centering Constrained-Width Elements
+
+If you constrain the width of an element, it will remain on the left side of its parent element. To make it horizontally centered instead, you can set the left and right margins to `auto`. This will cause the browser to horizontally center the element within its parent element.
+
+```css
+.container {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+```
+
+This sort of rule is commonly used on pages that contain lots of text. By constraining the width, you ensure that the line lengths don't get any longer than `1170px` (about 12 inches), even on very wide screens. If the screen is wider than `1170px`, the `margin-left` and `marging-right` settings ensure that the text remains horizontally centered within the parent element, even though the text itself will remain left-aligned.
+
+For example, this main text in this tutorial is inside an element that uses a rule very similar to the one above. Try stretching the browser window wide and notice how the line length stays constrained, but the text block remains horizontally centered on the page.
 
 ## Conclusion
 
