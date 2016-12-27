@@ -54,7 +54,7 @@
 <p>Each web browser applies a set of default styles to any page it loads, which you can then override in your stylesheets. Unfortunately, these defaults are not completely consistent across all the browsers, so you might end up with a slightly different look in Edge than in Chrome.</p>
 <p>Thankfully the web development community has responded by creating <a href="https://necolas.github.io/normalize.css/">normalize.css</a>. This is a CSS stylesheet that simply normalizes all of the browser defaults to one consistent set of base styles, so that you can build upon a solid, uniform, and well-known foundation.</p>
 <p>Unless you are using a CSS framework that already includes the normalize.css rules (e.g., Bootstrap), it's good practice to include normalize.css as the first stylesheet you link to from your page. The link to your stylesheet comes after, so that your rules will build upon those defined in normalize.css.</p>
-<p>The easiest way to load normalize.css into your page is via their online version:</p>
+<p>The easiest way to load normalize.css into your page is via <a href="https://cdnjs.com/libraries/normalize">their online version</a>:</p>
 <pre><code class="html language-html">&lt;head&gt;   
     &lt;!-- normalize.css --&gt;
     &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"&gt;
@@ -62,6 +62,7 @@
     &lt;!-- our own stylesheet --&gt;
     &lt;link rel="stylesheet" href="css/styles.css"&gt;
 &lt;/head&gt;</code></pre>
+<p>Files that end with <code>.min.css</code> have been "minified," which just means that all the spaces have been taken out to make the file smaller and faster to download. When loading a library file from an online location like this, always use the <code>.min.css</code> version if it's available.</p>
 <p>This works well in every case except when you are offline, which can happen when you are doing development. If you need access to normalize.css while offline, <a href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">download it</a> to your project folder and link to it using a relative path, just like the link to your own stylesheet. By convention, we typically put files like this into a <code>lib/</code> folder, to keep them separate from our own files that we actively change.</p>
 <h2 id="sec-basicsyntax">Basic Syntax</h2>
 <p>A CSS stylesheet follows this basic syntax:</p>

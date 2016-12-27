@@ -46,7 +46,7 @@ Thankfully the web development community has responded by creating [normalize.cs
 
 Unless you are using a CSS framework that already includes the normalize.css rules (e.g., Bootstrap), it's good practice to include normalize.css as the first stylesheet you link to from your page. The link to your stylesheet comes after, so that your rules will build upon those defined in normalize.css.
 
-The easiest way to load normalize.css into your page is via their online version:
+The easiest way to load normalize.css into your page is via [their online version](https://cdnjs.com/libraries/normalize):
 
 ```html
 <head>   
@@ -57,6 +57,8 @@ The easiest way to load normalize.css into your page is via their online version
     <link rel="stylesheet" href="css/styles.css">
 </head>
 ```
+
+Files that end with `.min.css` have been "minified," which just means that all the spaces have been taken out to make the file smaller and faster to download. When loading a library file from an online location like this, always use the `.min.css` version if it's available.
 
 This works well in every case except when you are offline, which can happen when you are doing development. If you need access to normalize.css while offline, [download it](https://necolas.github.io/normalize.css/5.0.0/normalize.css) to your project folder and link to it using a relative path, just like the link to your own stylesheet. By convention, we typically put files like this into a `lib/` folder, to keep them separate from our own files that we actively change.
 
