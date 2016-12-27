@@ -14,7 +14,6 @@ By separating our data from the way they are presented, we achieve a number of b
 - The same HTML can be presented to different users in different ways. For example, you could allow users to "skin" the site in one of several different themes, or you could use different default formatting for different regions of the world with different aesthetic sensibilities
 - You can also dynamically adjust the look of your page by applying new style rules to elements in response to user interaction (clicking, hovering, scrolling, etc.)
 
-
 ## Adding a Stylesheet to your Page
 
 You can add CSS rules to your page in three different ways, but the best practice is to use a separate CSS stylesheet file, and link that to your HTML page. These stylesheet files are typically put into a `css/` subdirectory to keep them separate from all your HTML pages.
@@ -38,6 +37,28 @@ Now link this new stylesheet to your HTML file by adding the following element t
 ```
 
 The name you use for your CSS file can be anything you want. It just needs to match what you put in the `href` attribute of the `<link>` element.
+
+## Normalizing Browser Defaults
+
+Each web browser applies a set of default styles to any page it loads, which you can then override in your stylesheets. Unfortunately, these defaults are not completely consistent across all the browsers, so you might end up with a slightly different look in Edge than in Chrome.
+
+Thankfully the web development community has responded by creating [normalize.css](https://necolas.github.io/normalize.css/). This is a CSS stylesheet that simply normalizes all of the browser defaults to one consistent set of base styles, so that you can build upon a solid, uniform, and well-known foundation.
+
+Unless you are using a CSS framework that already includes the normalize.css rules (e.g., Bootstrap), it's good practice to include normalize.css as the first stylesheet you link to from your page. The link to your stylesheet comes after, so that your rules will build upon those defined in normalize.css.
+
+The easiest way to load normalize.css into your page is via their online version:
+
+```html
+<head>   
+    <!-- normalize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <!-- our own stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+```
+
+This works well in every case except when you are offline, which can happen when you are doing development. If you need access to normalize.css while offline, [download it](https://necolas.github.io/normalize.css/5.0.0/normalize.css) to your project folder and link to it using a relative path, just like the link to your own stylesheet. By convention, we typically put files like this into a `lib/` folder, to keep them separate from our own files that we actively change.
 
 ## Basic Syntax
 
