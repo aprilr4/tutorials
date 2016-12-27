@@ -61,6 +61,19 @@ img {
     background-color: #EAEAEA;
 }
 
+.example {
+    border: 1px dotted #AAA;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.flex-column {
+    flex-grow: 1;
+    padding: 0 0.25em;
+}
+
 @media (min-width: 768px) {
     header h1 {
         font-size: 70px;
@@ -70,5 +83,10 @@ img {
     .contents-header {
         background-image: url(../img/contents-header.jpg);
     }
+
+    .flex-row-md {
+        display: flex;
+    }
+
 }
 
