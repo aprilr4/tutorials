@@ -1,3 +1,7 @@
+.css-frameworks-header {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)), url(../img/css-frameworks-header-sm.jpg);
+}
+
 @media (min-width: 768px) {
     .css-frameworks-header {
         background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)), url(../img/css-frameworks-header.jpg);
