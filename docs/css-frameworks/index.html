@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Leveraging CSS Frameworks</title>
+    <link rel="icon" href="../img/favicon.png">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <script defer src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../lib/prism.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="../lib/prism.js"></script> 
+</head>
+<body>
+    <header class="css-frameworks-header">
+        <div class="container">
+            <h1>Leveraging CSS Frameworks</h1>
+            <p class="subtitle">Build on the shoulders of giants</p>
+        </div>
+    </header>
+    <div class="container">
+        <article>
+            <p>In the <a href="../adding-style/">Adding Some Style</a> and <a href="../responding-device/">Responding to the Device</a> tutorials, you learned how to write style rules that change the appearance of your web pages. Although you could implement a entire site with only custom style rules, most professionals build upon a well-tested <strong>CSS framework</strong> instead. The framework normalizes browser default styling, applies consistent and attractive formatting to all HTML elements, and defines several style classes you can use for common UI components (badges, alerts, cards, responsive navigation bars, tabs, drop-down buttons, tool tips and popovers, sliders, switches, carousels, etc.). You can then add your own custom rules on top of the framework to tweak the default framework formatting.</p>
+<p>A CSS framework is just a stylesheet with a bunch of rules that someone else wrote for you, and some accompanying JavaScript for the interactive features. There's nothing magic about it. You can look at the stylesheet and see all the rules that are defined in there, and it's all stuff you could have written yourself. But those rules have been crafted by professionals and tested on a wide array of browsers to ensure consistent results, so it's a good idea to build on top of them.</p>
+<h2 id="sec-popularcssframeworks">Popular CSS Frameworks</h2>
+<p>There are several popular CSS frameworks to choose from. All of them provide beautiful formatting of HTML elements, pre-defined responsive multi-column layout grids that work on all browsers, and all the common UI elements you see on most web sites.</p>
+<h3 id="sec-bootstrap">Bootstrap</h3>
+<p>The most commonly-used CSS framework on the web is <a href="http://getbootstrap.com/">Bootstrap</a>. It was originally created at Twitter to enforce some consistency amongst their internal tools, but after they released it as an open-source project in 2011, it became <em>very</em> widely used. That wide use has benefits and drawbacks: it's very well tested, documented, and supported, but it's also so prevalent that it's default look has become cliché. Thankfully, it's rather easy to <a href="http://getbootstrap.com/customize/">customize Bootstrap</a> with your own fonts, colors, sizing, etc.</p>
+<p>Bootstrap is currently working on a <a href="http://v4-alpha.getbootstrap.com/">new version 4</a> that promises to offer a flexbox-based responsive grid layout, as well as a set of officially-supported themes.</p>
+<h3 id="sec-foundation">Foundation</h3>
+<p>Bootstrap's chief rival is <a href="http://foundation.zurb.com/">Foundation</a>. It has the reputation of being more ahead-of-the-curve than Bootstrap, introducing new features sooner. They were the first framework to use a responsive mobile-first design, and their new version 6 already offers a <a href="http://foundation.zurb.com/sites/docs/flex-grid.html">flexbox-based responsive grid</a>. Foundation has mostly the same UI elements as Bootstrap, but with a different default look at feel, which can also be <a href="http://foundation.zurb.com/sites/download.html/#customizeFoundation">customized</a> to match your own branding.</p>
+<h3 id="sec-materialdesignlite">Material Design Lite</h3>
+<p>Bootstrap and Foundation defined their own visual design language, but if you are a fan of Google's <a href="https://material.google.com/">Material Design</a> instead, there are a few CSS frameworks based upon that. The official Google implementation is known as <a href="https://getmdl.io/">Material Design Lite</a>, or MDL for short. Material Design is <em>very opinionated</em> so MDL is difficult to customize beyond changing the primary and accent colors. Their style class names are also <em>very verbose</em>, as they follow the <a href="https://en.bem.info/methodology/">Block, Element, Modifier</a> (BEM) naming method. But it's a well-implemented framework that has all the smarts and money of Google behind it.</p>
+<h3 id="sec-materialize">Materialize</h3>
+<p>The other popular Material Design implementation is <a href="http://materializecss.com/">Materialize</a>. This is an open-source project, so it's not supported by Google, <a href="https://getmdl.io/faq/#existing-implementations">nor does Google feel that it's a "correct" implementation</a> of Material Design. Regardless, a lot of people use it, primarily because it's easy to learn if you are coming from Bootstrap.</p>
+<h2 id="sec-addingaframeworktoyourpage">Adding a Framework to your Page</h2>
+<p>Each framework has a "getting started" page that describes your various options for adding the framework to your HTML page. Nearly all of them will let you link to their production files on a Content Delivery Network (CDN), download them as a zip file, or add them to your project via a package manager like <code>npm</code> or <code>bower</code>. Each method has its benefits and drawbacks.</p>
+<h3 id="sec-linkingtoacdn">Linking to a CDN</h3>
+<p>Linking to a CDN is a very easy option that has several benefits. The first is <strong>simplicity</strong>. For example, linking to Bootstrap's version 3.3.7 files on a CDN is as simple as adding these elements to the <code>&lt;head&gt;</code> section of your web page:</p>
+<pre><code class="html language-html">&lt;!-- Bootstrap v3.3.7 CSS stylesheet --&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"&gt;
+
+&lt;!-- jQuery library (required by Bootstrap's JavaScript library) --&gt;
+&lt;script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"&gt;&lt;/script&gt;
+
+&lt;!-- Bootstrap v3.3.7 JavaScript library --&gt;
+&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre>
+<div class="alert alert-warning">Note that this loads version 3.3.7 specifically. Always check the <a href="http://getbootstrap.com/getting-started/#download-cdn">Bootstrap Getting Started page</a> to get the elements for their most current version.</div>
+<p>Simplicity is one benefit, but <strong>download speed</strong> is another. Content Delivery Networks are a set of web servers that can deliver commonly-requested content very quickly all over the world. CDNs replicate their content to machines in several regions of the world, and use dynamic Domain Name Service (DNS) resolution to steer users to the machine nearest them. So a user in Australia might download the Bootstrap CSS from a server located in Singapore, while a user in France might get the same CSS file from a server located in Ireland. Although it may seem like the Internet is instantaneous, dragging files halfway around the world is still relatively slow. If the files are large, it can create a noticeable delay.</p>
+<p>Another reason that CDNs increase download performance is <strong>browser caching</strong>. If multiple sites all use the CDN version of Bootstrap, then the browser only has to download that file the first time you visit one of those sites. The browser can then reuse the previously downloaded file for all other sites that link to the same URL. With popular frameworks like Bootstrap, it's highly likely that your user has already visited a site that links to Bootstrap's CDN version, and thus the Bootstrap CSS and JavaScript are already in the user's browser cache.</p>
+<p>Another benefit is <strong>dynamic patching</strong>. If the developers of your framework discover a bug that can be patched without breaking existing code, they can re-release the patched file to the CDN, and your users' will automatically pick it up the next time they visit your site.</p>
+<p>The only drawback of linking to a CDN is that it won't work when you are offline. If you commonly do your development offline, or if you are building a web application that is meant to run offline, you must download the CSS framework files into your project directory using one of the other two methods.</p>
+<h3 id="sec-downloadingazip">Downloading a Zip</h3>
+<p>The second method for adding a CSS framework is downloading the files as a zip and unpacking them into your project directory. As noted above, one primary benefit of this approach is that the framework files will be <strong>available even when you are offline</strong>. </p>
+<p>A second potential benefit is that framework sites often let you customize the contents of the zip, adjusting fonts, colors, etc. For example, Bootstrap's <a href="http://getbootstrap.com/customize/">customize page</a> allows you to select only the components you need, and adjust base styling properties before downloading your customized zip file.</p>
+<p>A third benefit is realized if you use the <a href="http://sass-lang.com/">Sass</a> or <a href="http://lesscss.org/">Less</a> CSS pre-compilers. These tools extend the CSS syntax to include features found in most other programming languages: variables, functions, inheritance, includes, mix-ins, etc. Most CSS frameworks are built using one of these two pre-compilers, and their <strong>source files are commonly included in the downloaded zip</strong>. You can then refer to these source files directly in your own Sass or Less code, including only the parts of the framework you actually plan on using. You can also override their standard fonts, colors, sizes, etc., simply by resetting their variables.</p>
+<p>A fourth benefit is realized if you use a build system like gulp or webpack. It's common to link your HTML page to both your CSS framework's stylesheet and a few of your own, but this will result in one network round-trip per CSS file. If you download the framework's stylesheet, you can concatenate it with your own stylesheets, creating only one CSS file to download. This can enhance the page load experience, especially on slower mobile networks.</p>
+<p>There are two main drawbacks to this method. First, it <strong>adds large framework files to your code repository</strong> that could easily be downloaded from the web as needed. Second, these <strong>zips typically don't include other libraries that the framework depends upon</strong>. For example, Bootstrap's JavaScript library requires the jQuery library, but that's not included in their distribution zip file, as the jQuery library is maintained by a different set of people. To eliminate both of these drawbacks, use a package manager.</p>
+<h3 id="sec-usingapackagemanager">Using a Package Manager</h3>
+<p>Package managers are command-line programs that consult online directories of available packages, find all other packages a given package depends upon, and download all of them to a subdirectory within your project directory. They also commonly record the set of packages your program is using in a special file that you can add to your project's code repository. This takes the guess-work out of determining the set of packages you need for a given framework, and makes it really simple for a new developer joining your project to get all the packages your project needs in order to run.</p>
+<p>In the web development space, the most commonly-used package managers are <a href="https://www.npmjs.com/"><code>npm</code></a> and <a href="https://bower.io/"><code>bower</code></a>. The former was originally created for the server-side Node.js environment, while the latter was a fork of the former, adjusted for the special needs of client-side web development projects. Since then, <code>npm</code> has expanded to include both server and client-side packages, so these days you can use either in most circumstances.</p>
+<p>Let's see how we can use <code>bower</code> to install the Bootstrap CSS framework. Bower is installed using the <code>npm</code> package manager, so to install bower, you first need to <a href="https://nodejs.org/en/">install Node.js</a>, which installs <code>npm</code>. Once you have Node.js, install bower by running this at your command prompt from any directory:</p>
+<pre><code class="bash language-bash">$ sudo npm install -g bower</code></pre>
+<blockquote>
+  <p><strong>Windows Users</strong>: you don't need the <code>sudo</code> part of that command. Just execute <code>npm install -g bower</code></p>
+</blockquote>
+<p>To use <code>bower</code> in a project, you first run this command <strong>within your project directory</strong> to create the file it uses to track meta-data about your project, including the packages your project depends on:</p>
+<pre><code class="bash language-bash">$ bower init</code></pre>
+<p>You can accept all the default values by hitting <code>Enter</code> after each prompt. After all the prompts are answered, it creates a file named <code>bower.json</code> to capture all the meta-data about your project. You should add, commit, and push this file to your code repository.</p>
+<p>You can then install Bootstrap's files and record your dependency upon it using this command:</p>
+<pre><code class="bash language-bash">$ bower install --save bootstrap</code></pre>
+<p>This will download both the Bootstrap and jQuery packages (because Bootstrap depends on jQuery) to a new directory named <code>bower_components</code>. You can then include them in your page by adding these elements to your <code>&lt;head&gt;</code> section:</p>
+<pre><code class="html language-html">&lt;!-- Bootstrap css file --&gt;
+&lt;link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"&gt;
+&lt;!-- jQuery JavaScript library --&gt;
+&lt;script defer src="bower_components/jquery/dist/jquery.min.js"&gt;&lt;/script&gt;
+&lt;!-- Bootstrap JavaScript library --&gt;
+&lt;script defer src="bower_components/bootstrap/dist/js/bootstrap.min.js"&gt;&lt;/script&gt;</code></pre>
+<p>Note that the URLs in the <code>href</code> attributes are no longer absolute URLs pointing to a CDN. Instead they are relative URLs pointing to a sub-directory named <code>bower_components</code>. This directly will need to be on your web server so that the server can send these files to the user's browser. </p>
+<p>When new developers join your project, they can quickly install all the packages listed in the <code>bower.json</code> file, as well as all of their dependencies, using this one command:</p>
+<pre><code class="bash language-bash">$ bower install</code></pre>
+<p>Because this simple command will install the packages on-demand, it's customary to add the <code>bower_components</code> directory to your <code>.gitignore</code> file. That way the files in that directory won't be added to your repository. The only exception to this rule is if you are using GitHub pages to host your site. If so, the <code>bower_components</code> directory must be added to your repo so that GitHub pages can serve the files to the browser.</p>
+<p>You can also use <code>bower</code> to upgrade packages, or remove them from your project. See the <a href="https://bower.io/docs/api/">bower documentation</a> for more details.</p>
+<h3 id="sec-whichisbestcdnordownload">Which is Best? CDN or Download?</h3>
+<p>If you ask a group of developers which is the better approach&mdash;linking to a CDN or downloading via a package manager&mdash;you'll probably start a very heated debate. It's kind of like the <a href="https://www.youtube.com/watch?v=SsoOG6ZeyUI">spaces <em>v.</em> tabs</a> debate. Each method has its benefits and drawbacks, and neither option is clearly superior to the other. But choose you must, and your choice should be something you stick with. The one thing you don't want to do is mix the two approaches in one project.</p>
+<p>If you are new to web development and can't decide which approach to use, link to the CDN version. It's simple and the lack of offline support probably won't affect you much.</p>
+<h2 id="sec-responsivelayoutgrids">Responsive Layout Grids</h2>
+<p>At the core of all of these popular CSS Frameworks is a responsive grid layout system. These grids allow you to build multi-column layouts on all browsers, even those that don't support the new flexbox standard. These grids use very complicated CSS syntax to achieve this effect, and can still end-up with rendering problems, but they are your only option if you need to provide multi-column layout to IE users.</p>
+<p>These grid systems divide the horizontal line into 12 equal units. A given element can span as many of these grid units as you want, but after 12 units, the next element will wrap to the next line. Since 12 can be divided evenly by 6, 4, or 3, you can easily create layouts with 2, 3, or 4 equally-sized columns that sit next to each other on the same line. Or you can create one column that spans 4 units and another that spans 8 units. Any combination that adds up to 12 is fine.</p>
+<p>The number of grid units any given element consumes is specified using specially-named CSS style classes. For example, this markup uses Bootstrap to create three equally-sized columns on all screens:</p>
+<pre><code class="html language-html">&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-xs-4"&gt;
+            &lt;h2&gt;Column 1&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-xs-4"&gt;
+            &lt;h2&gt;Column 2&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-xs-4"&gt;
+            &lt;h2&gt;Column 3&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>In Bootstrap, grids should always be put inside an element with <code>class="container"</code> or <code>class="container-fluid"</code>. Both of these style classes add a little padding to the left and right, and the <code>container</code> class sets the <code>width</code> property so that it doesn't grow ridiculously wide on large desktop monitors.</p>
+<p>The <code>&lt;div class="row"&gt;</code> element starts a new row, and each direct child <code>&lt;div&gt;</code> within that row element defines a new column. The style class <code>col-xs-4</code> tells Bootstrap that the element should consume 4 grid units on extra-small screens and larger (essentially, all screens), so all three of those <code>&lt;div&gt;</code> elements will appear side-by-side on all screen sizes. Here's what it looks like in the browser:</p>
+<p data-height="200" data-theme-id="dark" data-slug-hash="BzGXgk" data-default-tab="result" data-user="drstearns" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/drstearns/pen/BzGXgk/">Bootstrap Grid 1</a> by Dave Stearns (<a href="http://codepen.io/drstearns">@drstearns</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<p>That's handy, but the real power comes when you want that layout to respond to the screen size, reverting to a single stacked set of elements on small phone screens. To do that, we just adjust the style classes:</p>
+<pre><code class="html language-html">&lt;div class="container"&gt;    
+    &lt;div class="row"&gt;
+        &lt;div class="col-sm-4"&gt;
+            &lt;h2&gt;Column 1&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm-4"&gt;
+            &lt;h2&gt;Column 2&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm-4"&gt;
+            &lt;h2&gt;Column 3&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>Note that the <code>col-xs-4</code> classes became <code>col-sm-4</code>. By default, the <code>&lt;div&gt;</code> elements will stretch to fill the entire row and thus stack on top of each other, but the <code>col-sm-4</code> will create a multi-column layout on small screens and larger (<code>&gt;=768px</code>). If you look in the <a href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">Bootstrap stylesheet</a>, you'll see that those <code>col-sm-4</code> style classes are defined within a media rule block that has the condition <code>min-width(768px)</code>, so they are applied only when the screen size is at least <code>768px</code> wide. Here's what it looks like in the browser:</p>
+<p data-height="200" data-theme-id="dark" data-slug-hash="qNQZZW" data-default-tab="result" data-user="drstearns" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/drstearns/pen/qNQZZW/">Bootstrap Grid 2</a> by Dave Stearns (<a href="http://codepen.io/drstearns">@drstearns</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p>Bootstrap also defines classes for <code>col-md-*</code>, which are in media rule blocks with the condition <code>min-width(992px)</code>, and <code>col-lg-*</code> classes, which are in media rule blocks with the condition <code>min-width(1200px)</code>.</p>
+<p>You can also combine these classes to create different layouts on different sizes of screens:</p>
+<pre><code class="html language-html">&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-sm-4 col-md-4"&gt;
+            &lt;h2&gt;Column 1&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm-8 col-md-4"&gt;
+            &lt;h2&gt;Column 2&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm-12 col-md-4"&gt;
+            &lt;h2&gt;Column 3&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>With this markup, the first column consumes 4 grid units on small and medium screens, the second column consumes 8 grid units on small screens but only 4 on medium screens, and the third consumes 12 units on small screens but only 4 on medium screens. On a small screens, the first two columns sit side-by-side, but the third wraps to the next line and stretches across the entire row.</p>
+<p data-height="400" data-theme-id="dark" data-slug-hash="mEabJR" data-default-tab="result" data-user="drstearns" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/drstearns/pen/mEabJR/">Bootstrap Grid 3</a> by Dave Stearns (<a href="http://codepen.io/drstearns">@drstearns</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p>See the <a href="http://getbootstrap.com/css/#grid">Bootstrap grid system documentation</a> for more details.</p>
+<h2 id="sec-uicomponents">UI Components</h2>
+<p>Besides a responsive grid system, CSS Frameworks like Bootstrap also offer a host of useful <a href="http://getbootstrap.com/components/">UI components</a>. For example, adding a Bootstrap alert to your page requires this simple markup:</p>
+<pre><code class="html language-html">&lt;div class="alert alert-danger" role="alert"&gt;Danger Will Robinson, Danger!&lt;/div&gt;</code></pre>
+<div class="alert alert-danger">Danger Will Robinson, Danger!</div>
+<p>The <code>role="alert"</code> attribute is included to help screen readers know that this element is something more than a generic <code>&lt;div&gt;</code> element. The <code>role</code> attribute is defined in the <a href="https://www.w3.org/TR/wai-aria/roles#role_definitions">Aria accessibility standard</a>, and it's good practice to add this attribute to elements that play a role that is different from what the element name normally suggests.</p>
+<p>To allow users to dismiss an alert, just extend your markup like this:</p>
+<pre><code class="html language-html">&lt;div class="alert alert-warning alert-dismissible" role="alert"&gt;
+  &lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+  Danger Will Robinson, Danger!
+&lt;/div&gt;</code></pre>
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Danger Will Robinson, Danger!
+</div>
+<p>Just like the <code>role</code> attribute, the <code>aria-label</code> and <code>aria-hidden</code> attributes are defined in the Aria accessibility standard. The former provides a pronounceable label for the close button, and the latter tells the screen reader to ignore the <code>&amp;times;</code> HTML entity, as it won't be able to describe it in any sensible way.</p>
+<p>Try experimenting with other <a href="http://getbootstrap.com/components/">Bootstrap UI Components</a> using my <a href="http://codepen.io/drstearns/pen/XKoyEN">Bootstrap Playground CodePen</a>. Just copy/paste the markup from Bootstrap's documentation to see what it creates.</p>
+<h2 id="sec-largerapplicationcomponents">Larger Application Components</h2>
+<p>Bootstrap offers all kinds of simple UI components like these, but it also has some more complex ones that are useful in web applications. For example, you can add a modal dialog to your page and open it from a button:</p>
+<pre><code class="html language-html">&lt;!-- button to open modal --&gt;
+&lt;p&gt;
+    &lt;button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"&gt;
+      Open Modal Dialog
+    &lt;/button&gt;
+&lt;/p&gt;
+
+&lt;!-- modal dialog markup, hidden until opened --&gt;
+&lt;div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"&gt;
+    &lt;div class="modal-dialog" role="document"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;div class="modal-header"&gt;
+                &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+                &lt;h4 class="modal-title" id="myModalLabel"&gt;Modal title&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body"&gt;
+                Hello World, this is a modal dialog!
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
+                &lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demoModal">Open Modal Dialog</button></div>
+<div class="modal fade" id="demoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Modal title</h4></div>
+<div class="modal-body">Hello World, this is a modal dialog!</div>
+<p><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></div></div></div></div></p>
+<p>These application components are more useful when you add your own JavaScript, which you will learn how to do in later tutorials.</p>
+<h2 id="sec-keeplearning">Keep Learning</h2>
+<p>This has only scratched the surface of what you can do with a CSS framework like <a href="http://getbootstrap.com/css/">Bootstrap</a>, <a href="http://foundation.zurb.com/sites/docs/">Foundation</a>, <a href="http://materializecss.com/getting-started.html">Materialize</a>, or <a href="https://getmdl.io/started/index.html">Material Design Lite</a>. To learn more, see their respective documentation.</p>
+        </article>
+        <footer>
+            <p>
+                <small>
+                    <a href="..">table of contents</a>
+                </small>
+            </p>
+            <p>
+                <small>
+                    &copy; 2017, 
+                    <a href="https://ischool.uw.edu/people/faculty/dlsinfo">Dave Stearns</a>, 
+                    <a href="https://ischool.uw.edu/">The Information School</a>, 
+                    <a href="http://www.washington.edu/">University of Washington</a>
+                </small>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
