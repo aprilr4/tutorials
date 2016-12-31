@@ -43,6 +43,10 @@ img {
     height: auto;
 }
 
+img.media-object {
+    max-width: inherit;
+}
+
 .term {
     font-weight: bold;
 }
