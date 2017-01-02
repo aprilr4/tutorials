@@ -15,13 +15,15 @@ During the second half of the course, you will learn how to use JavaScript to bu
 
 The last week of the course lets you apply all of the skills you've learned to a project of your own choosing. This could be a personal portfolio site, or a website for an organization you volunteer with, or a new tool you've been wanting to build. This project may be done individually, or in teams.
 
-For each of these modules, you will read a few tutorials, occasionally watch a demonstration video, and then complete a challenge. The challenge allows you to practice and demonstrate the skills you learned in the tutorials, while building a real site or application, and publishing it to the web.
+For each of these modules, you will read a few tutorials, occasionally watch a demonstration video, and then complete a challenge. The challenge allows you to practice and demonstrate the skills you learned in the tutorials, while building and publishing a web site or application you could include in your portfolio.
 
 ## Interaction and Communication
 
-This is an entirely online course, so you won't be coming to a classroom and sitting through a lecture. All the work will be done asynchronously, but both Ada and I will be available to answer questions and help you when you get stuck. As noted in the [Communication section of the Canvas course website](https://canvas.uw.edu/courses/1100190/assignments/syllabus/#infx598-comm), you should post any questions you have to our [Slack team's general channel](https://infxwebwin17.slack.com/messages/general/) so that others can see the answer (you're probably not the only person with that question). If you'd like to ask something more personal, feel free to send a private message instead.
+This is an entirely online course, so you won't be coming to a classroom and sitting through a lecture. All the work will be done asynchronously, but both Ada and I will be available to answer questions and help you when you get stuck. As noted in the [Communication section of the Canvas course website](https://canvas.uw.edu/courses/1100190/assignments/syllabus/#infx598-comm), you should post any questions you have to our [Slack team's general channel](https://infxwebwin17.slack.com/messages/general/) so that others can see the answer (you're probably not the only person with that question). If you'd like to ask something more personal, feel free to send a direct message instead.
 
-If you want to have a more synchronous live chat, we can do that via [Zoom](https://zoom.us/) or some other video conferencing tool. Send a private message to schedule a time to chat.
+We will endeavor to answer questions promptly, but please remember that we have other responsibilities in addition to this course, so we may not be able to answer you immediately. Also keep in mind that we are in Seattle, so we won't typically be online from 6:00pm to 9:00am Pacific Time.
+
+If you want to have a synchronous live chat, we can do that via [Zoom](https://zoom.us/) or some other video conferencing tool. Send a direct message to schedule a time to chat.
 
 And if you happen to be near the UW Seattle campus, you can also schedule an in-person meeting. Send a private message to arrange a time.
 
