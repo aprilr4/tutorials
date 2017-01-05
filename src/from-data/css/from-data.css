@@ -1,0 +1,9 @@
+.from-data-header {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.1)), url(../img/from-data-header-sm.png); 
+}
+
+@media (min-width: 768px) {
+    .from-data-header {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.1)), url(../img/from-data-header.png); 
+    }
+}

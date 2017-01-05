@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Creating Content from Data</title>
+    <link rel="icon" href="../img/favicon.png">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <script defer src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../lib/prism.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="../lib/prism.js"></script> 
+</head>
+<body>
+    <header class="from-data-header">
+        <div class="container">
+            <h1>Creating Content from Data</h1>
+            <p class="subtitle">Making your pages data-driven</p>
+        </div>
+    </header>
+    <div class="container">
+        <article>
+            <p>Now that you know how to work with data in JavaScript, and how to alter the page using the DOM, it's time to put the two together and create data-driven web pages.</p>
+<p>So far you've created pages where you've typed in all of the content by hand, but in many cases, you will want at least some of that content to be derived from data that are stored separately and change over time. Wouldn't it be cool if you could dynamically build some of your page's content based on some data you have in JavaScript as an array of objects? Well, you're in luck; the DOM provides us mechanisms to do just that.</p>
+<h2 id="sec-creatingpopulatingandappendingnewelements">Creating, Populating, and Appending New Elements</h2>
+<p>In the previous tutorial and challenge you learned how to alter existing elements in your page, but the DOM also allows us to create new elements that don't yet exist. This is done using the <code>document.createElement()</code> method:</p>
+<pre><code class="javascript language-javascript">//create a new &lt;p&gt; element
+var myNewPara = document.createElement("p");
+
+//set its text content
+myNewPara.textContent = "Hello World!";</code></pre>
+<p>The <code>document.createElement()</code> method creates a new disconnected, free-floating DOM element in memory, and we can manipulate it just like any other DOM element, but it won't appear on screen until we actually add it to the page. To add it to the page, we need to append it as a child element of some existing element in the tree. For example, say we want that new paragraph element to appear at the bottom of our page. If we append it as a new child of the <code>&lt;body&gt;</code> element, it will appear at the very bottom of the body, after all existing child elements:</p>
+<pre><code class="javascript language-javascript">//select the &lt;body&gt; element
+var body = document.querySelector("body");
+
+//append our new &lt;p&gt; element as a new child of &lt;body&gt;
+body.appendChild(myNewPara);</code></pre>
+<p>The <a href="http://www.w3schools.com/jsref/met_node_appendchild.asp"><code>.appendChild()</code></a> method is available on all DOM elements, so you can append new elements as children of any existing element on your page. The <code>.appendChild()</code> method will always append your new element to the <em>end</em> of the existing children list, but if you would rather add it <em>before</em> some existing child, you can use the <a href="http://www.w3schools.com/jsref/met_node_insertbefore.asp"><code>.insertBefore()</code></a> instead.</p>
+<p>There is also a corresponding <a href="http://www.w3schools.com/jsref/met_node_removechild.asp"><code>.removeChild()</code></a> to remove a specific child element from another element. But if you simply want to clear <em>all</em> content from a given element (child elements and/or text), it's much faster and simpler to set the element's <code>.textContent</code> property to an empty string (<code>""</code>);</p>
+<h2 id="sec-htmltables">HTML Tables</h2>
+<p>If we want to display tabular data in our web pages, the most appropriate elements to use are those that create an HTML table. Like a spreadsheet, an HTML table presents tabular data in rows and columns. Each row should present data from one record or observation, and each column should present one property from each record or observation. Columns should be labeled with a title, and may also have an optional footer for displaying totals or other statistics for the column.</p>
+<p>HTML tables have a similar element structure to HTML pages. They start with a single element named <code>&lt;table&gt;</code>, which contains two elements: one for the table header (column headings); and one for the table body (the data rows).</p>
+<pre><code class="html language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;!-- column headings --&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;!-- table rows --&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<p>The <code>&lt;thead&gt;</code> element should contain one table row element (<code>&lt;tr&gt;</code>), and that row should contain one table header element (<code>&lt;th&gt;</code>) for each column you want to display:</p>
+<pre><code class="html language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;Age&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;!-- table rows --&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<p>By default, browsers will render <code>&lt;th&gt;</code> elements in bold, but you can override this using CSS, just like any other element.</p>
+<p>The <code>&lt;tbody&gt;</code> element should contain one table row element for each data row, and each row should contain table data cell elements (<code>&lt;td&gt;</code>) for each column. For obvious reasons, the number of <code>&lt;td&gt;</code> elements per row should match the number of <code>&lt;th&gt;</code> elements in the <code>&lt;thead&gt;</code> section. If there is no data for the column, simply leave the contents of the <code>&lt;td&gt;</code> element blank.</p>
+<pre><code class="html language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;Age&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John&lt;/td&gt;
+            &lt;td&gt;Smith&lt;/td&gt;
+            &lt;td&gt;35&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Jane&lt;/td&gt;
+            &lt;td&gt;Lee&lt;/td&gt;
+            &lt;td&gt;29&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<p>When the browser renders the table, it will ensure that all of the columns line-up, regardless of how much content happens to be within a given cell. By default, the content in each cell will be left-aligned, but you can adjust that using CSS. For example, it's common to set the CSS property <code>text-align: right</code> on elements containing numeric content so that the numbers are right-aligned. You can define one CSS style class that applies this formatting, and then add that style class to any <code>&lt;td&gt;</code> that displays numeric data, as well as the <code>&lt;th&gt;</code> for that column:</p>
+<pre><code class="css language-css">.numeric {
+    text-align: right;
+}</code></pre>
+<pre><code class="html language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th class="numeric"&gt;Age&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John&lt;/td&gt;
+            &lt;td&gt;Smith&lt;/td&gt;
+            &lt;td class="numeric"&gt;35&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Jane&lt;/td&gt;
+            &lt;td&gt;Lee&lt;/td&gt;
+            &lt;td class="numeric"&gt;29&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<h2 id="sec-buildingtablesfromdata">Building Tables from Data</h2>
+<p>Now suppose we wanted to build this HTML table dynamically from data. If we know the shape of the data ahead of time, we could continue to hard-code the <code>&lt;thead&gt;</code> and <code>&lt;th&gt;</code> elements, as those remain the same regardless of the data rows, but leave the <code>&lt;tbody&gt;</code> empty, appending one row per record in our data.</p>
+<p>For example, say we had the data from above in a JavaScript array of objects:</p>
+<pre><code class="javascript language-javascript">var people = [
+    {
+        fname: "John",
+        lname: "Smith",
+        age: 35,
+        email: "jsmith@example.com",
+        description: "..."
+    },
+    {
+        fname: "Jane",
+        lname: "Lee",
+        age: 29,
+        email: "jlee@example.com",
+        description: "..."
+    }
+];</code></pre>
+<p>This creates an array with two objects, each of which has the same set of properties: <code>fname</code>, <code>lname</code>, <code>age</code>, <code>email</code>, and <code>description</code>. This is conceptually similar to the <code>MOVIES</code> array you worked with in an earlier challenge.</p>
+<p>Our goal is create one <code>&lt;tr&gt;</code> for each record, with <code>&lt;td&gt;</code> elements for each of the properties. The best way to do that is to break up the task into a few reusable functions. The fist would be a function that can create, populate, and return a new <code>&lt;td&gt;</code> element given some value and a flag to indicate whether the value should be formatted as numeric:</p>
+<pre><code class="javascript language-javascript">function renderTableCell(value, isNumeric) {
+    //create the new &lt;td&gt; element
+    var td = document.createElement("td");
+
+    //set its text content to the provided value
+    td.textContent = value;
+
+    //if it should be formatted as numeric...
+    if (isNumeric) {
+        //add the "numeric" style class
+        td.classList.add("numeric");
+    }
+
+    //return the new element to the caller
+    return td;
+}</code></pre>
+<p>The function name starts with <code>render</code> because that's what we typically call functions that transform raw data into some kind of content that can be shown to a human.</p>
+<p>The next function you need is one that can create a new <code>&lt;tr&gt;</code> element and populate it with associated <code>&lt;td&gt;</code> elements, given one of the records, which is a JavaScript object.</p>
+<pre><code class="javascript language-javascript">function renderPersonRow(person) {
+    //create the &lt;tr&gt; element
+    var tr = document.createElement("tr");
+
+    //create and append the &lt;td&gt; elements
+    tr.appendChild(renderTableCell(person.fname));
+    tr.appendChild(renderTableCell(person.lname));
+    tr.appendChild(renderTableCell(person.age, true));
+
+    //return the table row to the caller
+    return tr;
+}</code></pre>
+<p>Here we use our existing <code>renderTableCell()</code> function to create the various <code>&lt;td&gt;</code> elements. Each time we pass a different property from the person record as the <code>value</code> parameter. For the first two, we omit the second <code>isNumeric</code> parameter, but we set it to <code>true</code> on the last call, as that property should be formatted as a number. Omitted parameters in JavaScript are automatically set to <code>undefined</code>, and that <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/ch2.md#truthy--falsy">will evaluate as <code>false</code></a> when we test it with the <code>if ()</code> condition, so omitting the parameter is the same as passing <code>false</code>.</p>
+<p>These two functions will create a fully populated <code>&lt;tr&gt;</code> element in-memory, but we still need to append that <code>&lt;tr&gt;</code> to the <code>&lt;tbody&gt;</code> in order for it to be displayed on the page. That requires a third function, which accepts the entire array of people records, loops over the array elements, calling <code>renderPersonRow()</code> for each, and appending the returned table row to the <code>&lt;tbody&gt;</code> element:</p>
+<pre><code class="javascript language-javascript">function renderPeopleTable(peopleArray) {
+    //select the &lt;tbody&gt; element
+    //you can make this more precise by using a descendant selector,
+    //referring to a particular &lt;table&gt; by ID or style class name
+    var tbody = document.querySelector("tbody");
+
+    //clear any existing content in the body
+    tbody.textContent = "";
+
+    //for each element in the array...
+    for (var idx = 0; idx &lt; peopleArray.length; idx++) {
+        //get the person record at the current index
+        var person = peopleArray[idx];
+
+        //render that person record as a &lt;tr&gt; with &lt;td&gt;s
+        //and append it to the &lt;tbody&gt;
+        tbody.appendChild(renderPersonRow(person));
+    }
+}</code></pre>
+<p>Now we can call our <code>renderPeopleTable()</code>, passing the array of records, and it will dynamically populate the <code>&lt;tbody&gt;</code> based on whatever happens to be in the array:</p>
+<pre><code class="javascript language-javascript">//var people = [...] from above
+renderPeopleTable(people);</code></pre>
+<h2 id="sec-usingblocksofhtmlastemplates">Using Blocks of HTML as Templates</h2>
+<p>Tables have a fairly simple and rigid structure, so it's easy to just create <code>&lt;tr&gt;</code> and <code>&lt;td&gt;</code> elements as you run through an array of data. But suppose you wanted to render these people using something like an MDL card layout, which requires significantly more HTML per-record. You could create all of the requisite elements, just as we did with the table rows and cells, but it might be easier to define a template instead.</p>
+<p>A <strong>template</strong> is a block of HTML that you want to repeat for each record in your data array. The HTML could be quite complex, with lots of nested <code>&lt;div&gt;</code> elements and style classes, but only the elements that actually contain data would need to change for each of the data records. You can define this block of HTML once in your page, and then use JavaScript to clone, populate, and append it for each data record. </p>
+<p>For example, say you had this block of HTML in your web page:</p>
+<pre><code class="html language-html">&lt;!-- template for each person record --&gt;
+&lt;div hidden id="person-template" class="mdl-card mdl-shadow--2dp"&gt;
+    &lt;div class="mdl-card__title"&gt;
+        &lt;h2 class="person-name mdl-card__title-text"&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="person-description mdl-card__supporting-text"&gt;&lt;/div&gt;
+    &lt;div class="mdl-card__actions mdl-card--border"&gt;
+        &lt;a class="contact-person-button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="#"&gt;
+            Contact
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>There are a few things to note about this HTML block. First, the outermost <code>&lt;div&gt;</code> element has an attribute named <code>hidden</code>. This tells the browser not to display this block of HTML on the page, and it tells assistive technologies like screen readers to ignore it. This content is simply a template that we will clone and populate later for each record, so we don't want the empty template itself showing up on screen.</p>
+<p>Second, I've added particular style class names to the various elements within this block that will show data values. For example, the <code>&lt;h2&gt;</code> element has a style class named <code>person-name</code> in addition to all the other MDL-specific style classes. This will allow us to find and populate these elements easily after we clone the template. It will also make it easy to style the data.</p>
+<p>To use this template, we need to write a little JavaScript. Our first function will render one record given a template:</p>
+<pre><code class="javascript language-javascript">function renderPersonCard(person, template) {
+    //deep clone the template
+    var card = template.cloneNode(true);
+
+    //remove the `hidden` attribute from the clone 
+    //so that it will be displayed
+    card.removeAttribute("hidden");
+
+    //populate the various descendant elements with data
+    //person name
+    var fullName = person.fname + " " + person.lname;
+    card.querySelector(".person-name").textContent = fullName;
+
+    //person description
+    card.querySelector(".person-description").textContent = person.description;
+
+    //contact button link
+    card.querySelector(".contact-person-button").href = "mailto:" + person.email;
+
+    //return the cloned, populated card
+    return card;
+}</code></pre>
+<p>Every DOM element has a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode"><code>.cloneNode()</code></a> method that will create a copy of the element. If you pass <code>true</code> as the first parameter, it will create a <strong>deep copy</strong>, which means it makes a copy of all the descendant elements as well. When you create a deep copy, the returned elements are completely new and separate from the ones you cloned. Modifying the copy won't alter the original template.</p>
+<p>But when we copy, we get all attributes and child elements, including the <code>hidden</code> attribute on the template. We don't want this on the clone as we intend to populate the clone and show it on screen, so the second line of code removes that attribute from the copy.</p>
+<p>We then use our style classes to find the descendant elements whose text content should be set to the data values. Here we use the <code>.querySelector()</code> method on the clone element so that it only searches the descendants of that element, and not the entire document.</p>
+<p>This function will create a single card from a record and template, so to create all cards for all records, we need another function:</p>
+<pre><code class="javascript language-javascript">function renderPeopleCards(peopleArray, template) {
+    //create a &lt;div&gt; to hold all of the cards
+    var div = document.createElement("div");
+
+    //for each data record...
+    for (var idx = 0; idx &lt; peopleArray.length; idx++) {
+        //get the person record at the current index
+        var person = peopleArray[idx];
+
+        //create and append a card
+        div.appendChild(renderPersonCard(person, template));
+    }
+
+    return div;
+}</code></pre>
+<p>This function creates a new <code>&lt;div&gt;</code> to hold all of the cards, and then just loops through the array, calling <code>renderPersonCard()</code> for each element, and appending the returned card to the <code>&lt;div&gt;</code>.</p>
+<p>To call this, we just need to select our template element, and pass it as the second parameter:</p>
+<pre><code class="javascript language-javascript">//select the element with id="person-template"
+var template = document.querySelector("#person-template");
+var cards = renderPersonCards(people, template);
+
+//append the cards to some existing element so that they appear
+var main = document.querySelector("main");
+main.appendChild(cards);</code></pre>
+<h2 id="sec-templatinglibraries">Templating Libraries</h2>
+<p>This process of merging data with a template is so common that several JavaScript libraries have been created to make the process even easier. These libraries use special syntax to indicate where data values should appear, and many support simple conditionals and looping/repeating right in the template itself.</p>
+<p>A simple and popular templating library is <a href="http://handlebarsjs.com/">Handlebars</a>. The template above would look like this when using Handlebars:</p>
+<pre><code class="html language-html">&lt;!-- handlebars library --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- our template --&gt;
+&lt;script id="person-template" type="text/x-handlebars-template"&gt;
+    &lt;div class="mdl-card mdl-shadow--2dp"&gt;
+        &lt;div class="mdl-card__title"&gt;
+            &lt;h2 class="mdl-card__title-text"&gt;
+                {{fname}} {{lname}}
+            &lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class="mdl-card__supporting-text"&gt;
+            {{description}}
+        &lt;/div&gt;
+        &lt;div class="mdl-card__actions mdl-card--border"&gt;
+            &lt;a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                href="mailto:{{email}}"&gt;
+                Contact
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/script&gt;</code></pre>
+<p>Because Handlebars extends the HTML syntax, they prefer you to put Handlebars templates inside a <code>&lt;script type="text/x-handlebars-template"&gt;</code> element. The browser will not interpret this as JavaScript, but will instead ignore it, figuring that some other program will interpret the contents later. It will also be ignored by HTML validators.</p>
+<p>Note how the template contains several <code>{{...}}</code> expressions. These double curly braces denote something that Handlebars will replace with data when the template is merged. If you tilt your head 90 degrees, the double curly braces will look like handlebar mustaches, hence the name of the library!</p>
+<p>To use this template, we first use the Handlebars library to compile it:</p>
+<pre><code class="javascript language-javascript">//get the contents of the id="person-template" element
+var source = document.querySelector("#person-template").innerHTML;
+
+//compile that into a function that we can use to create
+//fully-populated copies of the template
+var templateFunc = Handlebars.compile(source);</code></pre>
+<p>The variable <code>templateFunc</code> is actually a function that accepts a JavaScript data object as its first parameter. The function will merge that data with the template, returning the fully-populated HTML as a string.</p>
+<pre><code class="javascript language-javascript">//copy and populate the template, returning HTML as a string
+var cardHTML = templateFunc(people[0]);
+
+//select an element you want to contain the generated HTML
+//and set its .innerHTML property
+var main = document.createElement("main");
+main.innerHTML = cardHTML;</code></pre>
+<p>Calling <code>templateFunc()</code> causes Handlebars to merge the data passed as the first parameter with the template. Everyplace you have <code>{{...}}</code> in your template, Handlebars evaluates the <a href="http://handlebarsjs.com/expressions.html">expression</a> between the curly braces against the data object you passed as the first parameter. Typically these are just property names (e.g., <code>fname</code>, <code>email</code>), and Handlebars will replace the entire <code>{{...}}</code> expression with the value of that property. As Handlebars does this, it automatically escapes any HTML that might be in the property, so the results will be as safe as if you had set the element's <code>.textContent</code> property. </p>
+<p>The Handlebars template function returns the merged HTML as a string, so it's not yet a real DOM element. To make it display on screen, select an existing element and set its <code>.innerHTML</code> property. Or you can create a new <code>&lt;div&gt;</code> element, set its <code>.innerHTML</code> property, and append it to some existing element.</p>
+<h2 id="sec-othertemplatinglibraries">Other Templating Libraries</h2>
+<p>Handlebars is just one of many templating libraries in the JavaScript world, but they all operate on the same basic principles. The most popular these days, but also the most complex, is <a href="https://facebook.github.io/react/">React.js</a>. They take the approach of embedding the template right in your JavaScript, using a special syntax extension they've defined named JSX (JavaScript Expressions). Using this requires special build tools, so it's far beyond a Beginning Web Development Course. But if you're interested in learning more about React, see their <a href="https://facebook.github.io/react/tutorial/tutorial.html">Tutorial</a> as well as their documentation on <a href="https://facebook.github.io/react/docs/installation.html">Installation</a>, <a href="https://facebook.github.io/react/docs/introducing-jsx.html">JSX</a>, and <a href="https://facebook.github.io/react/docs/components-and-props.html">Components and Props</a>.</p>
+        </article>
+        <footer>
+            <p>
+                <small>
+                    <a href="..">table of contents</a>
+                </small>
+            </p>
+            <p>
+                <small>
+                    &copy; 2017, 
+                    <a href="https://ischool.uw.edu/people/faculty/dlsinfo">Dave Stearns</a>, 
+                    <a href="https://ischool.uw.edu/">The Information School</a>, 
+                    <a href="http://www.washington.edu/">University of Washington</a>
+                </small>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
