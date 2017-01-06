@@ -78,6 +78,10 @@ img.media-object {
     padding: 0 0.25em;
 }
 
+.contents-header {
+    background-image: url(../img/contents-header-sm.jpg);
+}
+
 @media (min-width: 768px) {
     header h1 {
         font-size: 70px;
