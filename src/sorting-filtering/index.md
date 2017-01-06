@@ -20,7 +20,7 @@ nums.sort();
 console.log(nums); // [1, 10, 2, 21] ...whoops!
 ```
 
-If your array contains anything besides strings, then you must give the `.sort()` method some help. You need to tell it how to compare pairs of elements against each other. Given that, then the sorting algorithm can do the rest.
+If your array contains anything besides strings, then you must give the `.sort()` method some help. You need to tell it how to compare pairs of elements against each other. Given that, the sorting algorithm can do the rest.
 
 The way you do this is to pass a compare function to the `.sort()` method. This is similar to how you passed an event listener function to the `.addEventListener()` method of a DOM element. The sort algorithm will call your compare function multiple times, passing two elements at a time.
 
@@ -73,7 +73,7 @@ people.sort(function(p1, p2) {
 });
 ```
 
-The array contains a list of objects, each of which has the same properties: `name`, and `age`. The `.sort()` method can't know which of those properties we want to sort by, so our compare function specifically accesses the `.age` property. We use the same subtraction trick, but we subtracts `.age` property from each object. 
+The array contains a list of objects, each of which has the same properties: `name`, and `age`. The `.sort()` method can't know which of those properties we want to sort by, so our compare function specifically accesses the `.age` property. We use the same subtraction trick, but we subtract the `.age` property from each object. 
 
 To sort by age descending, just reverse the subtraction order:
 

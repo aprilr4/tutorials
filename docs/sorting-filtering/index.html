@@ -37,7 +37,7 @@ console.log(names); // ["Ada", "Dave", "Harry", "JinHa", "Sean"]</code></pre>
 <pre><code class="javascript language-javascript">var nums = [1,10,21,2];
 nums.sort();
 console.log(nums); // [1, 10, 2, 21] ...whoops!</code></pre>
-<p>If your array contains anything besides strings, then you must give the <code>.sort()</code> method some help. You need to tell it how to compare pairs of elements against each other. Given that, then the sorting algorithm can do the rest.</p>
+<p>If your array contains anything besides strings, then you must give the <code>.sort()</code> method some help. You need to tell it how to compare pairs of elements against each other. Given that, the sorting algorithm can do the rest.</p>
 <p>The way you do this is to pass a compare function to the <code>.sort()</code> method. This is similar to how you passed an event listener function to the <code>.addEventListener()</code> method of a DOM element. The sort algorithm will call your compare function multiple times, passing two elements at a time.</p>
 <p>Your compare function must accept two parameters. Both will be set to elements in the array, and your function needs to compare those two elements against each other. If the first element should come <em>before</em> the second element in the sorted order, then your function must return a negative number. If the first element should come <em>after</em> the second element in the sorted order, then your function must return a positive number. And if both elements are equal to each other, and therefore should be <em>next</em> to each other in the sorted order, your function must return a zero.</p>
 <p>For example, sorting that array of numbers could be done like so:</p>
@@ -73,7 +73,7 @@ console.log(nums); // [1, 2, 10, 21] ...yay!</code></pre>
 people.sort(function(p1, p2) {
     return p1.age - p2.age;
 });</code></pre>
-<p>The array contains a list of objects, each of which has the same properties: <code>name</code>, and <code>age</code>. The <code>.sort()</code> method can't know which of those properties we want to sort by, so our compare function specifically accesses the <code>.age</code> property. We use the same subtraction trick, but we subtracts <code>.age</code> property from each object. </p>
+<p>The array contains a list of objects, each of which has the same properties: <code>name</code>, and <code>age</code>. The <code>.sort()</code> method can't know which of those properties we want to sort by, so our compare function specifically accesses the <code>.age</code> property. We use the same subtraction trick, but we subtract the <code>.age</code> property from each object. </p>
 <p>To sort by age descending, just reverse the subtraction order:</p>
 <pre><code class="javascript language-javascript">//sort by the age property descending
 people.sort(function(p1, p2) {
