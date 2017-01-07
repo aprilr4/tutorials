@@ -171,7 +171,7 @@ promise.then(function(response) {
 <blockquote>
   <p><a href="https://data.seattle.gov/resource/4xy5-26gy.json?$order=date%20desc&amp;$limit=24">https://data.seattle.gov/resource/4xy5-26gy.json?$order=date%20desc&amp;$limit=24</a>;</p>
 </blockquote>
-<p>You can see that it returns an array of objects, one for each hour. The objects have three properties each: <code>date</code> (date and time of observation), <code>fremont_bridge_nb</code> (number of bikes traveling on the west sidewalk), and <code>fremont_bridge_sb</code> (number of bikes traveling on the east sidewalk).</p>
+<p>You can see that it returns an array of objects, one for each hour. The objects have three properties each: <code>date</code> (date and time of observation), <code>fremont_bridge_nb</code> (number of bikes traveling on the east sidewalk), and <code>fremont_bridge_sb</code> (number of bikes traveling on the west sidewalk).</p>
 <p>Once we fetch this data and parse it as JSON, we can render it to an HTML table, similar to how to rendered the <code>people</code> array in the previous tutorial, or the <code>MOVIES</code> array in the previous challenge. </p>
 <pre><code class="javascript language-javascript">//last 24-hours of data from Fremont Bridge bike traffic
 var dataURL = "https://data.seattle.gov/resource/4xy5-26gy.json?$order=date%20desc&amp;$limit=24";

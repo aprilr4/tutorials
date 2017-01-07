@@ -210,7 +210,7 @@ All of the datasets on the site can be returned in JSON format, and you can supp
 
 > [https://data.seattle.gov/resource/4xy5-26gy.json?$order=date%20desc&$limit=24](https://data.seattle.gov/resource/4xy5-26gy.json?$order=date%20desc&$limit=24);
 
-You can see that it returns an array of objects, one for each hour. The objects have three properties each: `date` (date and time of observation), `fremont_bridge_nb` (number of bikes traveling on the west sidewalk), and `fremont_bridge_sb` (number of bikes traveling on the east sidewalk).
+You can see that it returns an array of objects, one for each hour. The objects have three properties each: `date` (date and time of observation), `fremont_bridge_nb` (number of bikes traveling on the east sidewalk), and `fremont_bridge_sb` (number of bikes traveling on the west sidewalk).
 
 Once we fetch this data and parse it as JSON, we can render it to an HTML table, similar to how to rendered the `people` array in the previous tutorial, or the `MOVIES` array in the previous challenge. 
 
