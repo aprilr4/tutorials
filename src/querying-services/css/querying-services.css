@@ -1,0 +1,10 @@
+.querying-services-header {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url(../img/querying-services-header-sm.jpg); 
+    background-position: bottom center;
+}
+
+@media (min-width: 768px) {
+    .querying-services-header {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url(../img/querying-services-header.jpg); 
+    }
+}

@@ -222,7 +222,7 @@ For a full list of events you can listen for, see the [Event Reference](https://
 
 Every HTML element will raise a `"click"` event when the element is clicked. This will also occur on touch screens when the element is tapped, though after a very short delay. Touch screens will also raise `touchstart` and `touchend` events when the user starts and stops touching an element.
 
-Elements also raise a `"doubleclick"` event when the element is double-clicked/tapped, and `"contectmenu"` when the user clicks with the alternate button.
+Elements also raise a `"doubleclick"` event when the element is double-clicked/tapped, and `"contextmenu"` when the user clicks with the alternate button.
 
 ### Window Events
 

@@ -1,4 +1,4 @@
-Once we start building our web pages from data, we can then enable dynamic sorting and filtering of that data. Once we crate functions to render an array of objects into HTML, all we need are some more functions to sort/filter that array, and re-render. Thankfully, JavaScript has us covered. JavaScript arrays support methods for sorting, filtering, iterating, mapping, and joining.
+Once we start building our web pages from data, we can then enable dynamic sorting and filtering of that data. If we crate functions to render an array of objects into HTML, all we need are some more functions to sort/filter that array, and re-render. Thankfully, JavaScript has us covered. JavaScript arrays support methods for sorting, filtering, iterating, mapping, and joining.
 
 ## Sorting
 
