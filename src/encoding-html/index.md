@@ -24,7 +24,7 @@ That tells any program that reads this file to interpret the contents as HTML ve
 
 ## HTML is a Tree of Elements
 
-he rest of an HTML document is a simple tree of **elements**. If you've taken a second-level computer science course, you should already know what a tree data structure is, but if you haven't (or if you forgot), a tree is a very common data structure that looks like this:
+The rest of an HTML document is a simple tree of **elements**. If you've taken a second-level computer science course, you should already know what a tree data structure is, but if you haven't (or if you forgot), a tree is a very common data structure that looks like this:
 
 ![tree data structure](img/tree.png)
 
