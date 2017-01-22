@@ -364,7 +364,7 @@ header {
 }
 ```
 
-The value for this property should be an absolute or relative path to an image file, wrapped in `url(...)`. Typically this will be a relative path to an image file in your project, and the path should tell the browser how to get from this CSS file to the image. For example, say your CSS file was in a `css` sub-folder, and the image was in another sub-folder named `img` at the same level, like so:
+The value for this property should be an absolute or relative path to an image file, wrapped in `url()`. Typically this will be a relative path to an image file in your project, and the path should tell the browser how to get from this CSS file to the image. For example, say your CSS file was in a `css` sub-folder, and the image was in another sub-folder named `img` at the same level, like so:
 
 ```
 myproject/
@@ -375,7 +375,9 @@ myproject/
     |-- header-background.jpg
 ```
 
-The path to get from `css/styles.css` to `img/header-background.jpg` would be `../img/header-background.jpg`. The `..` sequence in a path is a special syntax that means "the parent folder," so this path will go up to the `css` folder's parent folder (the project root folder), then down into the `img` folder, and finally select the `header-background.jpg` file.
+The path to get from `css/styles.css` to `img/header-background.jpg` would be `../img/header-background.jpg`. The `..` sequence in a path is a special syntax, interpreted by the browser, that means "the parent folder." So this path will go up to the `css` folder's parent folder (the project root folder), then down into the `img` folder, and finally select the `header-background.jpg` file.
+
+Note that the `..` is a literal part of the path syntax, not a placeholder you should replace with a folder name. It allows us to specify a relative path that goes up one level to whatever the parent folder happens to be. All other segments of the path look for a file or folder *within* the current folder, but the `..` syntax goes *up* to the parent folder.
 
 By default, background images will start in the upper-left corner of the element, and repeat if the element is larger than the background image. But we can alter this behavior with the other `background-*` CSS properties. For example, to make the image cover the entire background of the element, regardless of how big or small the element happens to be, use this combination of properties:
 
