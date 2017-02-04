@@ -79,6 +79,14 @@ $ sudo npm install -g bower
 
 > **Windows Users**: you don't need the `sudo` part of that command. Just execute `npm install -g bower`
 
+Bower uses the [git command line tools](https://git-scm.com/downloads) to clone packages from their source repositories, so if you don't already have the git command line tools installed, you need to install them as well. You can verify if you have the git command line tools installed by running this command:
+
+```bash
+$ git --version
+```
+
+If you get a command not found error, you need to [install the tools](https://git-scm.com/downloads).
+
 To use `bower` in a project, you first run this command **within your project directory** to create the file it uses to track meta-data about your project, including the packages your project depends on:
 
 ```bash

@@ -76,6 +76,9 @@
 <blockquote>
   <p><strong>Windows Users</strong>: you don't need the <code>sudo</code> part of that command. Just execute <code>npm install -g bower</code></p>
 </blockquote>
+<p>Bower uses the <a href="https://git-scm.com/downloads">git command line tools</a> to clone packages from their source repositories, so if you don't already have the git command line tools installed, you need to install them as well. You can verify if you have the git command line tools installed by running this command:</p>
+<pre><code class="bash language-bash">$ git --version</code></pre>
+<p>If you get a command not found error, you need to <a href="https://git-scm.com/downloads">install the tools</a>.</p>
 <p>To use <code>bower</code> in a project, you first run this command <strong>within your project directory</strong> to create the file it uses to track meta-data about your project, including the packages your project depends on:</p>
 <pre><code class="bash language-bash">$ bower init</code></pre>
 <p>You can accept all the default values by hitting <code>Enter</code> after each prompt. After all the prompts are answered, it creates a file named <code>bower.json</code> to capture all the meta-data about your project. You should add, commit, and push this file to your code repository.</p>
