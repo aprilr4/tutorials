@@ -268,9 +268,11 @@ animateButton.addEventListener("click", function() {
 	//when the animation ends, remove that `bounce` style class
 	animateElem.addEventListener("animationend", function() {
 		animateElem.classList.remove("bounce");
-	});
+	}, {once: true});
 });
 ```
+
+Note that I added the `{once: true}` as a third parameter to the `addEventListener()` method. This tells the browser that I only want this function to run for the next `"animationend"` event, and not when that event occurs again in the future. The browser will call my event listener the next time that `"animationend"` event occurs, but after my event listener function exits, the browser will remove my listener so that it's not called again in the future. This is a handy way to clean up after an asynchronous operation, such as a CSS animation, completes.
 
 ## Conclusion
 

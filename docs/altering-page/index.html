@@ -195,8 +195,9 @@ animateButton.addEventListener("click", function() {
     //when the animation ends, remove that `bounce` style class
     animateElem.addEventListener("animationend", function() {
         animateElem.classList.remove("bounce");
-    });
+    }, {once: true});
 });</code></pre>
+<p>Note that I added the <code>{once: true}</code> as a third parameter to the <code>addEventListener()</code> method. This tells the browser that I only want this function to run for the next <code>"animationend"</code> event, and not when that event occurs again in the future. The browser will call my event listener the next time that <code>"animationend"</code> event occurs, but after my event listener function exits, the browser will remove my listener so that it's not called again in the future. This is a handy way to clean up after an asynchronous operation, such as a CSS animation, completes.</p>
 <h2 id="sec-conclusion">Conclusion</h2>
 <p>The DOM plus the ability to add event listener functions gives us total control over our web pages. We can literally rewrite the page in response to user interactions, which allows us to build highly-interactive web sites and applications.</p>
 <p>Now try some of this yourself. Use <a href="http://codepen.io/drstearns/pen/BpBxZo">this CodePen</a> or create your own page and script.</p>
